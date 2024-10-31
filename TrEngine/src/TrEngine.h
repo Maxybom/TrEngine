@@ -1,8 +1,9 @@
 #pragma once
 
 //For use by TrEngine applications
-#include <stdio.h>
+//#include <stdio.h>
 #include "TrEngine/Application.h"
+#include "TrEngine/Log.h"
 
 //------------------ Entry Point -------------------
 #include "TrEngine/EntryPoint.h"

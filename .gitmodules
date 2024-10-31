@@ -1,0 +1,3 @@
+[submodule "TrEngine/vendor/spdlog"]
+	path = TrEngine/vendor/spdlog
+	url = https://github.com/gabime/spdlog.git
