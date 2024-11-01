@@ -19,6 +19,7 @@
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Sandbox</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -90,7 +91,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy /B /Y ..\bin\Debug-windows-x86_64\TrEngine\TrEngine.dll ..\bin\Debug-windows-x86_64\Sandbox\ &gt; nul</Command>
+      <Command>IF NOT EXIST ..\bin\Debug-windows-x86_64\Sandbox\Sandbox.exe (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Sandbox\Sandbox.exe ..\bin\Debug-windows-x86_64\Sandbox\ &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -114,7 +115,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>copy /B /Y ..\bin\Release-windows-x86_64\TrEngine\TrEngine.dll ..\bin\Release-windows-x86_64\Sandbox\ &gt; nul</Command>
+      <Command>IF NOT EXIST ..\bin\Release-windows-x86_64\Sandbox\Sandbox.exe (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\Sandbox\Sandbox.exe ..\bin\Release-windows-x86_64\Sandbox\ &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -138,7 +139,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>copy /B /Y ..\bin\Dist-windows-x86_64\TrEngine\TrEngine.dll ..\bin\Dist-windows-x86_64\Sandbox\ &gt; nul</Command>
+      <Command>IF NOT EXIST ..\bin\Dist-windows-x86_64\Sandbox\Sandbox.exe (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\Sandbox\Sandbox.exe ..\bin\Dist-windows-x86_64\Sandbox\ &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

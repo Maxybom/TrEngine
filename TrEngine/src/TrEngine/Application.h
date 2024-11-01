@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Core.h"  
-
+#include "event/Event.h"
 namespace TrEngine {
 	class TE_API Application
 	{

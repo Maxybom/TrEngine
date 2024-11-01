@@ -19,6 +19,7 @@
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>TrEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -78,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_WINDLL;TE_PLATFORM_WINDOWS;TE_BUILD_DLL;TE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -91,7 +92,7 @@
       <ImportLibrary>..\bin\Debug-windows-x86_64\TrEngine\TrEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy /B /Y ..\bin\Debug-windows-x86_64\TrEngine\TrEngine.dll ..\bin\Debug-windows-x86_64\Sandbox\ &gt; nul</Command>
+      <Command>IF NOT EXIST ..\bin\Debug-windows-x86_64\Sandbox\TrEngine.dll (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\TrEngine\TrEngine.dll ..\bin\Debug-windows-x86_64\Sandbox\ &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -99,7 +100,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_WINDLL;TE_PLATFORM_WINDOWS;TE_BUILD_DLL;TE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -116,7 +117,7 @@
       <ImportLibrary>..\bin\Release-windows-x86_64\TrEngine\TrEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy /B /Y ..\bin\Release-windows-x86_64\TrEngine\TrEngine.dll ..\bin\Release-windows-x86_64\Sandbox\ &gt; nul</Command>
+      <Command>IF NOT EXIST ..\bin\Release-windows-x86_64\Sandbox\TrEngine.dll (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\TrEngine\TrEngine.dll ..\bin\Release-windows-x86_64\Sandbox\ &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -124,7 +125,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_WINDLL;TE_PLATFORM_WINDOWS;TE_BUILD_DLL;TE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -141,7 +142,7 @@
       <ImportLibrary>..\bin\Dist-windows-x86_64\TrEngine\TrEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy /B /Y ..\bin\Dist-windows-x86_64\TrEngine\TrEngine.dll ..\bin\Dist-windows-x86_64\Sandbox\ &gt; nul</Command>
+      <Command>IF NOT EXIST ..\bin\Dist-windows-x86_64\Sandbox\TrEngine.dll (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\TrEngine\TrEngine.dll ..\bin\Dist-windows-x86_64\Sandbox\ &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -150,6 +151,10 @@
     <ClInclude Include="src\TrEngine\Core.h" />
     <ClInclude Include="src\TrEngine\EntryPoint.h" />
     <ClInclude Include="src\TrEngine\Log.h" />
+    <ClInclude Include="src\TrEngine\event\ApplicationEvent.h" />
+    <ClInclude Include="src\TrEngine\event\Event.h" />
+    <ClInclude Include="src\TrEngine\event\KeyEvent.h" />
+    <ClInclude Include="src\TrEngine\event\MouseEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\TrEngine\Application.cpp" />
