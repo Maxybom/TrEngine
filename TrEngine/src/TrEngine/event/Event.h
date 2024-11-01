@@ -1,7 +1,7 @@
 #pragma once
+#include "Tepch.h"
 #include "TrEngine/Core.h"
-#include <string>
-#include <functional>
+
 
 namespace TrEngine {
 

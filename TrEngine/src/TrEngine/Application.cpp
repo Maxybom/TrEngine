@@ -1,3 +1,4 @@
+#include "Tepch.h"
 #include "Application.h"
 #include "TrEngine/Event/ApplicationEvent.h"
 #include "TrEngine/Log.h"

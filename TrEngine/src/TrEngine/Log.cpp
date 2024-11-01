@@ -1,3 +1,4 @@
+#include "Tepch.h"
 #include "Log.h"
 
 namespace TrEngine {

@@ -14,8 +14,12 @@ project "TrEngine"
     location "TrEngine"
     kind "SharedLib"
     language "C++"
+
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+    pchheader "Tepch.h"
+    pchsource "TrEngine/src/Tepch.cpp"
 
     files
     {

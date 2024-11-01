@@ -9,6 +9,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Tepch.h" />
     <ClInclude Include="src\TrEngine.h" />
     <ClInclude Include="src\TrEngine\Application.h">
       <Filter>TrEngine</Filter>
@@ -36,6 +37,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Tepch.cpp" />
     <ClCompile Include="src\TrEngine\Application.cpp">
       <Filter>TrEngine</Filter>
     </ClCompile>

@@ -3,8 +3,48 @@
   "WorkspaceRootPath": "E:\\Users\\manue\\Documents\\TrEngine\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\event\\Event.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|solutionrelative:TrEngine\\src\\TrEngine\\event\\Event.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Log.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|solutionrelative:TrEngine\\src\\TrEngine\\Log.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|solutionrelative:TrEngine\\src\\TrEngine\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Users\\manue\\Documents\\TrEngine\\premake5.lua||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:premake5.lua||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Log.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|solutionrelative:TrEngine\\src\\TrEngine\\Log.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\event\\MouseEvent.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|solutionrelative:TrEngine\\src\\TrEngine\\event\\MouseEvent.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\event\\KeyEvent.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|solutionrelative:TrEngine\\src\\TrEngine\\event\\KeyEvent.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\event\\ApplicationEvent.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|solutionrelative:TrEngine\\src\\TrEngine\\event\\ApplicationEvent.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\Tepch.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|solutionrelative:TrEngine\\src\\Tepch.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Core.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|solutionrelative:TrEngine\\src\\TrEngine\\Core.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\Tepch.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}|TrEngine\\TrEngine.vcxproj|solutionrelative:TrEngine\\src\\Tepch.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,20 +54,141 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Log.cpp",
+              "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Log.cpp",
+              "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\Log.cpp",
+              "ToolTip": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Log.cpp",
+              "RelativeToolTip": "TrEngine\\src\\TrEngine\\Log.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-01T19:50:27.514Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "premake5.lua",
+              "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\premake5.lua",
+              "RelativeDocumentMoniker": "premake5.lua",
+              "ToolTip": "E:\\Users\\manue\\Documents\\TrEngine\\premake5.lua",
+              "RelativeToolTip": "premake5.lua",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-01T19:42:12.456Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Log.h",
+              "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Log.h",
+              "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\Log.h",
+              "ToolTip": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Log.h",
+              "RelativeToolTip": "TrEngine\\src\\TrEngine\\Log.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-01T19:41:20.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MouseEvent.h",
+              "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\event\\MouseEvent.h",
+              "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\event\\MouseEvent.h",
+              "ToolTip": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\event\\MouseEvent.h",
+              "RelativeToolTip": "TrEngine\\src\\TrEngine\\event\\MouseEvent.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-01T19:39:06.342Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "KeyEvent.h",
+              "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\event\\KeyEvent.h",
+              "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\event\\KeyEvent.h",
+              "ToolTip": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\event\\KeyEvent.h",
+              "RelativeToolTip": "TrEngine\\src\\TrEngine\\event\\KeyEvent.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-01T19:38:58.75Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Event.h",
+              "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\event\\Event.h",
+              "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\event\\Event.h",
+              "ToolTip": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\event\\Event.h",
+              "RelativeToolTip": "TrEngine\\src\\TrEngine\\event\\Event.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-01T19:38:45.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ApplicationEvent.h",
+              "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\event\\ApplicationEvent.h",
+              "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\event\\ApplicationEvent.h",
+              "ToolTip": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\event\\ApplicationEvent.h",
+              "RelativeToolTip": "TrEngine\\src\\TrEngine\\event\\ApplicationEvent.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-01T19:38:24.381Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Core.h",
+              "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Core.h",
+              "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\Core.h",
+              "ToolTip": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Core.h",
+              "RelativeToolTip": "TrEngine\\src\\TrEngine\\Core.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-01T19:28:28.864Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Tepch.h",
+              "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\Tepch.h",
+              "RelativeDocumentMoniker": "TrEngine\\src\\Tepch.h",
+              "ToolTip": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\Tepch.h",
+              "RelativeToolTip": "TrEngine\\src\\Tepch.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-01T19:27:32.703Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Tepch.cpp",
+              "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\Tepch.cpp",
+              "RelativeDocumentMoniker": "TrEngine\\src\\Tepch.cpp",
+              "ToolTip": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\Tepch.cpp",
+              "RelativeToolTip": "TrEngine\\src\\Tepch.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-01T19:27:21.135Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Application.cpp",
               "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Application.cpp",
               "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\Application.cpp",
               "ToolTip": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Application.cpp",
               "RelativeToolTip": "TrEngine\\src\\TrEngine\\Application.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-01T14:31:02.077Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-01T14:31:02.077Z"
             }
           ]
         }
