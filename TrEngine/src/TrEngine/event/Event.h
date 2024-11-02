@@ -1,7 +1,7 @@
 #pragma once
 #include "Tepch.h"
 #include "TrEngine/Core.h"
-
+#include <spdlog/fmt/ostr.h>
 
 namespace TrEngine {
 
@@ -40,6 +40,9 @@ namespace TrEngine {
         }
     protected:
         bool m_Handled = false;
+
+        // Aggiungi il dispatcher di eventi come amico
+        friend class EventDispatcher;
     };
 
     class EventDispatcher {
@@ -65,4 +68,21 @@ namespace TrEngine {
         return os << e.ToString();
     }
 
+}
+
+// Aggiungi qui la specializzazione del formattatore
+namespace fmt {
+    template <>
+    struct formatter<TrEngine::Event> {
+        template <typename ParseContext>
+        constexpr auto parse(ParseContext& ctx) {
+            return ctx.begin();
+        }
+
+        template <typename FormatContext>
+        auto format(const TrEngine::Event& e, FormatContext& ctx) {
+            // Personalizza la formattazione in base alle tue necessità
+            return format_to(ctx.out(), "Event: {}", e.ToString());
+        }
+    };
 }
