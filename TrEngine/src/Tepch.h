@@ -11,6 +11,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "TrEngine/Log.h"
+
 #ifdef TE_PLATFORM_WINDOWS
 #include "Windows.h"
 #endif // TE_PLATFORM_WINDOWS

@@ -396,3 +396,12 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Includi esplicitamente la directory vendor/bin
+!vendor/bin/
+!vendor/bin/**
+
+# Includi esplicitamente la directory TrEngine/TrEngine/vendor
+!TrEngine/TrEngine/vendor/
+!TrEngine/TrEngine/vendor/**
+

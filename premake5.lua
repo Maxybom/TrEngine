@@ -10,6 +10,11 @@ workspace "TrEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "TrEngine/vendor/GLFW/include"
+
+include "TrEngine/vendor/GLFW"
+
 project "TrEngine"
     location "TrEngine"
     kind "SharedLib"
@@ -30,13 +35,21 @@ project "TrEngine"
     includedirs
     {
         "%{prj.name}/src",
-        "TrEngine/vendor/spdlog/include"
+        "%{prj.name}/vendor/spdlog/include",
+        "%{IncludeDir.GLFW}"
+    }
+
+    links
+    {
+        "GLFW",
+        "opengl32.lib"
     }
 
     filter "system:windows"
         cppdialect "C++17"
         staticruntime "On"
         systemversion "latest"
+        staticruntime "off" -- Usa /MD per tutte le configurazioni
 
         defines
         {
@@ -90,6 +103,7 @@ project "Sandbox"
         cppdialect "C++17"
         staticruntime "On"
         systemversion "latest"
+        staticruntime "off" -- Usa /MD per tutte le configurazioni
 
         defines
         {

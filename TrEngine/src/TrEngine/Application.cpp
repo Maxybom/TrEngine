@@ -3,16 +3,24 @@
 #include "TrEngine/Event/ApplicationEvent.h"
 #include "TrEngine/Log.h"
 
+#include <GLFW/glfw3.h>
+
 namespace TrEngine {
 
-    Application::Application() {}
+    Application::Application() 
+    {
+        m_Window = std::unique_ptr<Window>(Window::Create());
+    }
 
     Application::~Application() {}
 
     void Application::Run() {
-        WindowResizeEvent e(1280, 720); // Correzione dell'errore di battitura
-        TE_TRACE(e.ToString()); // Usa ToString() per il logging
-        while (true);
+        while (m_Running)
+        {
+            glClearColor(1, 0, 1, 1);
+            glClear(GL_COLOR_BUFFER_BIT);
+            m_Window->OnUpdate();
+        }
     }
 
 }

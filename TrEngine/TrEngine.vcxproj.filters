@@ -4,6 +4,12 @@
     <Filter Include="TrEngine">
       <UniqueIdentifier>{E1F4B0F1-CDC1-0BFD-F6DA-F9A4E206418B}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TrEngine\Platform">
+      <UniqueIdentifier>{553EFB12-C154-F9A8-0ACC-84CA7621CA30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrEngine\Platform\Windows">
+      <UniqueIdentifier>{8F6DB834-FB2F-ECBE-44E0-7A4BB0E1C49C}</UniqueIdentifier>
+    </Filter>
     <Filter Include="TrEngine\event">
       <UniqueIdentifier>{12EB8F14-FEB8-831A-E74C-F440D3B95F7F}</UniqueIdentifier>
     </Filter>
@@ -21,6 +27,12 @@
       <Filter>TrEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\TrEngine\Log.h">
+      <Filter>TrEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TrEngine\Platform\Windows\WindowsWindow.h">
+      <Filter>TrEngine\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TrEngine\Window.h">
       <Filter>TrEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\TrEngine\event\ApplicationEvent.h">
@@ -43,6 +55,9 @@
     </ClCompile>
     <ClCompile Include="src\TrEngine\Log.cpp">
       <Filter>TrEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TrEngine\Platform\Windows\WindowsWindow.cpp">
+      <Filter>TrEngine\Platform\Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
