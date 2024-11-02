@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "E:\\Users\\manue\\Documents\\TrEngine\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Users\\manue\\Documents\\TrEngine\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Users\\manue\\Documents\\TrEngine\\premake5.lua||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:premake5.lua||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
@@ -63,6 +67,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "E:\\Users\\manue\\Documents\\TrEngine\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-02T13:25:43.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "premake5.lua",
               "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\premake5.lua",
               "RelativeDocumentMoniker": "premake5.lua",
@@ -70,12 +87,11 @@
               "RelativeToolTip": "premake5.lua",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-11-02T12:45:30.708Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-02T12:45:30.708Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Window.h",
               "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Window.h",
               "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\Window.h",
@@ -83,12 +99,11 @@
               "RelativeToolTip": "TrEngine\\src\\TrEngine\\Window.h",
               "ViewState": "AgIAAAQAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-02T12:27:29.175Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-02T12:27:29.175Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "WindowsWindow.cpp",
               "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Platform\\Windows\\WindowsWindow.cpp",
               "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\Platform\\Windows\\WindowsWindow.cpp",
@@ -100,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "WindowsWindow.h",
               "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Platform\\Windows\\WindowsWindow.h",
               "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\Platform\\Windows\\WindowsWindow.h",
@@ -112,7 +127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Window.h",
               "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\Window.h",
               "RelativeDocumentMoniker": "TrEngine\\src\\Window.h",
@@ -124,7 +139,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Log.cpp",
               "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Log.cpp",
               "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\Log.cpp",
@@ -136,7 +151,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Log.h",
               "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Log.h",
               "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\Log.h",
@@ -148,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Core.h",
               "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Core.h",
               "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\Core.h",
@@ -160,7 +175,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Tepch.h",
               "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\Tepch.h",
               "RelativeDocumentMoniker": "TrEngine\\src\\Tepch.h",
@@ -172,7 +187,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Tepch.cpp",
               "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\Tepch.cpp",
               "RelativeDocumentMoniker": "TrEngine\\src\\Tepch.cpp",
@@ -184,7 +199,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Application.cpp",
               "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Application.cpp",
               "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\Application.cpp",
@@ -196,7 +211,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Application.h",
               "DocumentMoniker": "E:\\Users\\manue\\Documents\\TrEngine\\TrEngine\\src\\TrEngine\\Application.h",
               "RelativeDocumentMoniker": "TrEngine\\src\\TrEngine\\Application.h",
