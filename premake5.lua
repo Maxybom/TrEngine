@@ -65,14 +65,17 @@ project "TrEngine"
 
     filter "configurations:Debug"
         defines "TE_DEBUG"
+          buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "TE_RELEASE"
+          buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Dist"
         defines "TE_DIST"
+        buildoptions "/MD"
         optimize "On"
 
 project "Sandbox"
@@ -118,12 +121,15 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "TE_DEBUG"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "TE_RELEASE"
+        buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Dist"
         defines "TE_DIST"
+        buildoptions "/MD"
         optimize "On"

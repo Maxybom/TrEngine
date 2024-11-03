@@ -38,12 +38,18 @@ namespace TrEngine {
         inline bool IsInCategory(EventCategory category) {
             return GetCategoryFlags() & category;
         }
+
+        // Aggiungi questo metodo per accedere a m_Handled
+        bool IsHandled() const { return m_Handled; }
+        void SetHandled(bool handled) { m_Handled = handled; }
+
     protected:
         bool m_Handled = false;
 
         // Aggiungi il dispatcher di eventi come amico
         friend class EventDispatcher;
     };
+
 
     class EventDispatcher {
         template<typename T>
@@ -55,7 +61,7 @@ namespace TrEngine {
         template<typename T>
         bool Dispatch(EventFn<T> func) {
             if (m_Event.GetEventType() == T::GetStaticType()) {
-                m_Event.m_Handled = func(*(T*)&m_Event);
+                m_Event.SetHandled(func(static_cast<T&>(m_Event)));
                 return true;
             }
             return false;
@@ -63,6 +69,8 @@ namespace TrEngine {
     private:
         Event& m_Event;
     };
+
+
 
     inline std::ostream& operator<<(std::ostream& os, const Event& e) {
         return os << e.ToString();
