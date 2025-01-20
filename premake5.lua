@@ -12,8 +12,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "TrEngine/vendor/GLFW/include"
+IncludeDir["Glad"] = "TrEngine/vendor/Glad/include"
 
 include "TrEngine/vendor/GLFW"
+include "TrEngine/vendor/Glad"
 
 project "TrEngine"
     location "TrEngine"
@@ -36,12 +38,14 @@ project "TrEngine"
     {
         "%{prj.name}/src",
         "%{prj.name}/vendor/spdlog/include",
-        "%{IncludeDir.GLFW}"
+        "%{IncludeDir.GLFW}",
+         "%{IncludeDir.Glad}"
     }
 
     links
     {
         "GLFW",
+        "Glad",
         "opengl32.lib"
     }
 
@@ -94,7 +98,9 @@ project "Sandbox"
     includedirs
     {
         "TrEngine/vendor/spdlog/include",
-        "TrEngine/src"
+        "TrEngine/src",
+         "%{IncludeDir.GLFW}",
+         "%{IncludeDir.Glad}",
     }
 
     links
@@ -112,6 +118,7 @@ project "Sandbox"
         {
             "_WINDLL",
             "TE_PLATFORM_WINDOWS",
+            "GLFW_INCLUDE_NONE",
         }
 
         postbuildcommands

@@ -3,7 +3,7 @@
 #include "TrEngine/Log.h"
 #include "TrEngine/Event/ApplicationEvent.h"
 
-#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 namespace TrEngine {
 
@@ -13,12 +13,13 @@ namespace TrEngine {
 	{
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+		unsigned int id;
+		glGenVertexArrays(1, &id);
 	}
 
 	Application::~Application()
-	{
-
-	}
+	{}
 
 	void Application::PushLayer(Layer* layer)
 	{
@@ -45,10 +46,6 @@ namespace TrEngine {
 		}
 	}
 
-
-
-
-
 	void Application::Run() {
 		while (m_Running)
 		{
@@ -67,6 +64,4 @@ namespace TrEngine {
 		m_Running = false;
 		return true;
 	}
-
-
 }
