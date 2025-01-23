@@ -3,14 +3,20 @@
 #include "TrEngine/Log.h"
 #include "TrEngine/Event/ApplicationEvent.h"
 
-#include <glad/glad.h>
+
 
 namespace TrEngine {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
+	 Application* Application::s_Instance=nullptr;
+
+
 	Application::Application()
 	{
+		TE_CORE_ASSERT(!s_Instance, "Application already exist!");
+		s_Instance=this;
+
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
@@ -24,11 +30,13 @@ namespace TrEngine {
 	void Application::PushLayer(Layer* layer)
 	{
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer)
 	{
 		m_LayerStack.PushOverlay(layer);
+		layer->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e)
@@ -46,11 +54,12 @@ namespace TrEngine {
 		}
 	}
 
-	void Application::Run() {
+	void Application::Run()
+	{
 		while (m_Running)
 		{
-			glClearColor(1, 0, 1, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			glClearColor( 1, 0, 1, 1 );
+			glClear( GL_COLOR_BUFFER_BIT );
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
@@ -58,6 +67,7 @@ namespace TrEngine {
 			m_Window->OnUpdate();
 		}
 	}
+
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)
 	{

@@ -12,10 +12,13 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "TrEngine/vendor/GLFW/include"
-IncludeDir["Glad"] = "TrEngine/vendor/Glad/include"
+IncludeDir["Glad"] = "TrEngine/vendor/glad/include"
+IncludeDir["ImGui"] = "TrEngine/vendor/imgui"
 
+-- Include le directory corrette
 include "TrEngine/vendor/GLFW"
 include "TrEngine/vendor/Glad"
+include "TrEngine/vendor/imgui"
 
 project "TrEngine"
     location "TrEngine"
@@ -31,7 +34,7 @@ project "TrEngine"
     files
     {
         "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
+        "%{prj.name}/src/**.cpp",
     }
 
     includedirs
@@ -39,42 +42,47 @@ project "TrEngine"
         "%{prj.name}/src",
         "%{prj.name}/vendor/spdlog/include",
         "%{IncludeDir.GLFW}",
-         "%{IncludeDir.Glad}"
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.ImGui}",
+         "TrEngine/vendor/imgui/backends"
     }
 
     links
     {
         "GLFW",
         "Glad",
-        "opengl32.lib"
+        "ImGui",
+        "opengl32.lib",
+       
     }
 
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On"
+        staticruntime "Off"
         systemversion "latest"
-        staticruntime "off" -- Usa /MD per tutte le configurazioni
 
         defines
         {
+            "_WIN32",
             "_WINDLL",
             "TE_PLATFORM_WINDOWS",
-            "TE_BUILD_DLL"
+            "TE_BUILD_DLL",
+            "IMGUI_IMPL_OPENGL_LOADER_CUSTOM",
         }
 
-        postbuildcommands
+         postbuildcommands
         {
             ("IF NOT EXIST ..\\bin\\" .. outputdir .. "\\Sandbox\\TrEngine.dll (xcopy /Q /Y /I ..\\bin\\" .. outputdir .. "\\TrEngine\\TrEngine.dll ..\\bin\\" .. outputdir .. "\\Sandbox\\ > nul)")
         }
 
     filter "configurations:Debug"
         defines "TE_DEBUG"
-          buildoptions "/MDd"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "TE_RELEASE"
-          buildoptions "/MD"
+        buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Dist"
@@ -92,15 +100,17 @@ project "Sandbox"
     files
     {
         "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
+        "%{prj.name}/src/**.cpp",
     }
 
     includedirs
     {
         "TrEngine/vendor/spdlog/include",
         "TrEngine/src",
-         "%{IncludeDir.GLFW}",
-         "%{IncludeDir.Glad}",
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.ImGui}",
+        "TrEngine/vendor/imgui/backends"
     }
 
     links
@@ -110,15 +120,15 @@ project "Sandbox"
 
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On"
+        staticruntime "Off"
         systemversion "latest"
-        staticruntime "off" -- Usa /MD per tutte le configurazioni
 
         defines
         {
+            "_WIN32",
             "_WINDLL",
             "TE_PLATFORM_WINDOWS",
-            "GLFW_INCLUDE_NONE",
+            "IMGUI_IMPL_OPENGL_LOADER_CUSTOM",
         }
 
         postbuildcommands

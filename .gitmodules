@@ -10,3 +10,9 @@
 [submodule "TrEngine/vendor/GLFW"]
 	path = TrEngine/vendor/GLFW
 	url = https://github.com/TheCherno/glfw.git
+[submodule "TrEngine/vendor/Imgui"]
+	path = TrEngine/vendor/Imgui
+	url = https://github.com/ocornut/imgui.git
+[submodule "TrEngine/vendor/imgui"]
+	path = TrEngine/vendor/imgui
+	url = https://github.com/ocornut/imgui.git
