@@ -82,7 +82,10 @@
 //  2017-08-25: Inputs: MousePos set to -FLT_MAX,-FLT_MAX when mouse is unavailable/missing (instead of -1,-1).
 //  2016-10-15: Misc: Added a void* user_data parameter to Clipboard function handlers.
 
+#include "Tepch.h"
 #include "imgui.h"
+
+
 #ifndef IMGUI_DISABLE
 #include "imgui_impl_glfw.h"
 
@@ -636,6 +639,7 @@ static bool ImGui_ImplGlfw_Init(GLFWwindow* window, bool install_callbacks, Glfw
     main_viewport->PlatformHandle = (void*)bd->Window;
 #ifdef _WIN32
     main_viewport->PlatformHandleRaw = glfwGetWin32Window(bd->Window);
+
 #elif defined(__APPLE__)
     main_viewport->PlatformHandleRaw = (void*)glfwGetCocoaWindow(bd->Window);
 #else

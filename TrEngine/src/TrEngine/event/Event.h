@@ -5,7 +5,7 @@
 
 namespace TrEngine {
 
-    // Events are currently blocked
+  
     enum class EventType {
         None = 0,
         WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
@@ -39,14 +39,14 @@ namespace TrEngine {
             return GetCategoryFlags() & category;
         }
 
-        // Aggiungi questo metodo per accedere a m_Handled
+        
         bool IsHandled() const { return m_Handled; }
         void SetHandled(bool handled) { m_Handled = handled; }
 
     protected:
         bool m_Handled = false;
 
-        // Aggiungi il dispatcher di eventi come amico
+       
         friend class EventDispatcher;
     };
 
@@ -78,7 +78,7 @@ namespace TrEngine {
 
 }
 
-// Aggiungi qui la specializzazione del formattatore
+
 namespace fmt {
     template <>
     struct formatter<TrEngine::Event> {
@@ -89,7 +89,7 @@ namespace fmt {
 
         template <typename FormatContext>
         auto format(const TrEngine::Event& e, FormatContext& ctx) {
-            // Personalizza la formattazione in base alle tue necessità
+            
             return format_to(ctx.out(), "Event: {}", e.ToString());
         }
     };

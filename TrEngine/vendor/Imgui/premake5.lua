@@ -7,6 +7,8 @@ project "ImGui"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+  
+
     files
     {
         "imconfig.h",
@@ -25,7 +27,10 @@ project "ImGui"
     includedirs
     {
         ".",
-        "%{IncludeDir.GLFW}",  -- Assicurati che il percorso sia corretto
+        "%{prj.name}/backends",
+        "%{IncludeDir.GLFW}",
+
+       
     }
 
     filter "system:windows"

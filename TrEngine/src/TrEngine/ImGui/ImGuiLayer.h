@@ -1,7 +1,11 @@
 #pragma once
 
 #include "Tepch.h"
+#include "imgui_impl_glfw.h"
 #include "TrEngine/Layer.h"
+#include "TrEngine/event/MouseEvent.h"
+#include "TrEngine/event/KeyEvent.h"
+#include "TrEngine/event/ApplicationEvent.h"
 
 
 
@@ -17,7 +21,15 @@ namespace TrEngine
 		void OnDetach();
 		void OnUpdate();
 		void OnEvent( Event& event );
-
+	private:
+		bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& e);
+		bool OnMouseButtonReleasedEvent( MouseButtonReleasedEvent& e );
+		bool OnMouseMovedEvent( MouseMovedEvent& e );
+		bool OnMouseScrolledEvent( MouseScrolledEvent& e );
+		bool OnKeyPressedEvent( KeyPressedEvent& e );
+		bool OnKeyReleasedEvent( KeyReleasedEvent& e );
+		//bool OnKeyTypedEvent( KeyTypeEvent& e );
+		bool OnWindowResizedEvent( WindowResizeEvent& e );
 	private:
 	float m_Time =0.0f;
 	};
