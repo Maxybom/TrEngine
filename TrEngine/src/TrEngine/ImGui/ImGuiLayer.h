@@ -6,6 +6,7 @@
 #include "TrEngine/event/MouseEvent.h"
 #include "TrEngine/event/KeyEvent.h"
 #include "TrEngine/event/ApplicationEvent.h"
+#include "imgui.h"
 
 
 
@@ -28,8 +29,10 @@ namespace TrEngine
 		bool OnMouseScrolledEvent( MouseScrolledEvent& e );
 		bool OnKeyPressedEvent( KeyPressedEvent& e );
 		bool OnKeyReleasedEvent( KeyReleasedEvent& e );
-		//bool OnKeyTypedEvent( KeyTypeEvent& e );
+		bool OnKeyTypedEvent( KeyTypedEvent& e );
 		bool OnWindowResizedEvent( WindowResizeEvent& e );
+
+		void UpdateModifiers( bool shift, bool ctrl, bool alt, bool super );
 	private:
 	float m_Time =0.0f;
 	};
