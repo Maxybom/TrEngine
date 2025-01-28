@@ -2,20 +2,17 @@
 #include "Application.h"
 #include "TrEngine/Log.h"
 #include "TrEngine/Event/ApplicationEvent.h"
-
-
+#include "Input.h"
 
 namespace TrEngine
 {
-
 	#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 	Application* Application::s_Instance = nullptr;
 
-
 	Application::Application()
 	{
-		TE_CORE_ASSERT( !s_Instance, "Application already exist!" );
+		TE_CORE_ASSERT( !s_Instance, "Application already exists!" );
 		s_Instance = this;
 
 		m_Window = std::unique_ptr<Window>( Window::Create() );
@@ -25,8 +22,7 @@ namespace TrEngine
 		glGenVertexArrays( 1, &id );
 	}
 
-	Application::~Application()
-	{}
+	Application::~Application() {}
 
 	void Application::PushLayer( Layer* layer )
 	{
@@ -71,13 +67,12 @@ namespace TrEngine
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
-			m_Window->OnUpdate();
+			auto [x, y] = Input::GetMousePosition();
+			TE_CORE_TRACE( "{0}, {1}", x, y );
 
-			
+			m_Window->OnUpdate();
 		}
 	}
-
-
 
 	bool Application::OnWindowClose( WindowCloseEvent& e )
 	{

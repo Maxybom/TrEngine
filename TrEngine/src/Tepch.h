@@ -10,6 +10,7 @@
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
+//#include "TrEngine/Log.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
