@@ -1,5 +1,7 @@
 #pragma once
+
 #include "TrEngine/Input.h"
+
 
 namespace TrEngine
 {
@@ -22,37 +24,43 @@ namespace TrEngine
 
 namespace TrEngine
 {
-	Input* Input::s_Instance = new WindowsInput(); // Initialize singleton instance
+    // Inizializzazione della variabile statica s_Instance
+    Input* Input::s_Instance = new WindowsInput();
 
-	bool WindowsInput::IsKeyPressedImpl( int keycode )
-	{
-		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		auto state = glfwGetKey( window, keycode );
-		return state == GLFW_PRESS || state == GLFW_REPEAT;
-	}
+    bool WindowsInput::IsKeyPressedImpl( int keycode )
+    {
+        if (ImGui::GetIO().WantCaptureKeyboard) return false; // Blocca input se ImGui lo sta gestendo
+        auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+        auto state = glfwGetKey( window, keycode );
+        return state == GLFW_PRESS || state == GLFW_REPEAT;
+    }
 
-	bool WindowsInput::IsMouseButtonPressedImpl( int button )
-	{
-		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		auto state = glfwGetMouseButton( window, button );
-		return state == GLFW_PRESS;
-	}
 
-	std::pair<float, float> WindowsInput::GetMousePositionImpl()
-	{
-		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		double xPos, yPos;
-		glfwGetCursorPos( window, &xPos, &yPos );
-		return {static_cast<float>(xPos), static_cast<float>(yPos)};
-	}
+    bool WindowsInput::IsMouseButtonPressedImpl( int button )
+    {
+        if (ImGui::GetIO().WantCaptureMouse) return false; // Blocca input se ImGui lo sta gestendo
+        auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+        auto state = glfwGetMouseButton( window, button );
+        return state == GLFW_PRESS;
+    }
 
-	float WindowsInput::GetMouseXImpl()
-	{
-		return GetMousePositionImpl().first;
-	}
 
-	float WindowsInput::GetMouseYImpl()
-	{
-		return GetMousePositionImpl().second;
-	}
+    std::pair<float, float> WindowsInput::GetMousePositionImpl()
+    {
+        if (ImGui::GetIO().WantCaptureMouse) return {0.0f, 0.0f}; // Blocca il mouse se ImGui lo sta gestendo
+        auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+        double xPos, yPos;
+        glfwGetCursorPos( window, &xPos, &yPos );
+        return {static_cast<float>(xPos), static_cast<float>(yPos)};
+    }
+
+    float WindowsInput::GetMouseXImpl()
+    {
+        return GetMousePositionImpl().first;
+    }
+
+    float WindowsInput::GetMouseYImpl()
+    {
+        return GetMousePositionImpl().second;
+    }
 }

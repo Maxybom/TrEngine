@@ -15,7 +15,6 @@ IncludeDir["GLFW"] = "TrEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "TrEngine/vendor/glad/include"
 IncludeDir["ImGui"] = "TrEngine/vendor/Imgui"
 
-
 include "TrEngine/vendor/GLFW"
 include "TrEngine/vendor/Glad"
 include "TrEngine/vendor/Imgui"
@@ -72,11 +71,10 @@ project "TrEngine"
             "_WINDLL",
             "TE_PLATFORM_WINDOWS",
             "TE_BUILD_DLL",
-            "IMGUI_IMPL_OPENGL_LOADER_CUSTOM",
+             "IMGUI_IMPL_OPENGL_LOADER_CUSTOM",
             "_GLFW_WIN32",
             "GLFW_EXPOSE_NATIVE_WIN32",
             "GLFW_INCLUDE_NONE",
-           
         }
 
     postbuildcommands
@@ -110,13 +108,12 @@ project "Sandbox"
     {
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp",
-         
     }
 
     includedirs
     {
         "TrEngine/vendor/spdlog/include",
-       "TrEngine/vendor/GLFW/src",
+        "TrEngine/vendor/GLFW/src",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
         "%{IncludeDir.ImGui}",
@@ -126,7 +123,7 @@ project "Sandbox"
 
     links
     {
-        "TrEngine"
+        "TrEngine",
     }
 
     filter "system:windows"
@@ -141,8 +138,8 @@ project "Sandbox"
             "TE_PLATFORM_WINDOWS",
             "IMGUI_IMPL_OPENGL_LOADER_CUSTOM",
             "_GLFW_WIN32",
-            "GLFW_EXPOSE_NATIVE_WIN32",
-            "GLFW_INCLUDE_NONE",
+             "GLFW_EXPOSE_NATIVE_WIN32",
+             "GLFW_INCLUDE_NONE",
         }
 
     postbuildcommands

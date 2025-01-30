@@ -10,19 +10,15 @@
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
-//#include "TrEngine/Log.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <GLFW/glfw3native.h>
 #include <TrEngine/Platform/OpenGL/ImGuiOpenGLRenderer.h>
 #include <imgui_impl_glfw.h>
+#include <imgui_internal.h>
 
 #include "TrEngine/Log.h"
-
-
-
-
 
 #ifdef TE_PLATFORM_WINDOWS
 #include "Windows.h"

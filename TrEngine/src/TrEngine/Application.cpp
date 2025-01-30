@@ -47,7 +47,7 @@ namespace TrEngine
 			return;
 		}
 
-		TE_CORE_TRACE( "{0}", e );
+		//TE_CORE_TRACE( "{0}", e );
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
@@ -68,7 +68,6 @@ namespace TrEngine
 				layer->OnUpdate();
 
 			auto [x, y] = Input::GetMousePosition();
-			TE_CORE_TRACE( "{0}, {1}", x, y );
 
 			m_Window->OnUpdate();
 		}

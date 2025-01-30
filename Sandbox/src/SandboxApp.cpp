@@ -11,12 +11,23 @@ public:
 
     void OnUpdate() override
     {
-        TE_INFO("ExampleLayer::Update");
+       // TE_INFO("ExampleLayer::Update");
+
+        if (TrEngine::Input::IsKeyPressed( TE_KEY_TAB ))
+        {
+            TE_TRACE( "Tab key is pressed" );
+        }
     }
 
     void OnEvent(TrEngine::Event& event) override
     {
-        TE_TRACE("{0}", event);
+        //
+
+        if (event.GetEventType() == TrEngine::EventType::KeyPressed)
+        {
+            TrEngine::KeyPressedEvent&e = (TrEngine::KeyPressedEvent&)event;
+            TE_TRACE("{0}",e.GetKeyCode());
+        }
     }
 };
 

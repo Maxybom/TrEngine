@@ -32,7 +32,7 @@ namespace TrEngine
 		bool OnKeyTypedEvent( KeyTypedEvent& e );
 		bool OnWindowResizedEvent( WindowResizeEvent& e );
 
-		void UpdateModifiers( bool shift, bool ctrl, bool alt, bool super );
+		//void UpdateModifiers( bool shift, bool ctrl, bool alt, bool super );
 	private:
 	float m_Time =0.0f;
 	};
