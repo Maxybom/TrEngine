@@ -1,6 +1,7 @@
 #include "Tepch.h"
 #include "WindowsWindow.h"
 #include "TrEngine/Log.h"
+
 #include "TrEngine/event/KeyEvent.h"
 #include "TrEngine/event/MouseEvent.h"
 #include "TrEngine/event/ApplicationEvent.h"
@@ -74,31 +75,31 @@ namespace TrEngine
 			} );
 
 		glfwSetKeyCallback( m_Window, []( GLFWwindow* window, int key, int scanCode, int action, int mods )
-		{
+			{
 				WindowData& data = *(WindowData*) glfwGetWindowUserPointer( window );
 
 				switch (action)
 				{
-					case GLFW_PRESS:
-					{
-						KeyPressedEvent event( key, 0 );
-						data.EventCallback( event );
-						break;
-					}
-					case GLFW_RELEASE:
-					{
-						KeyReleasedEvent event( key );
-						data.EventCallback( event );
-						break;
-					}
-					case GLFW_REPEAT:
-					{
-						KeyPressedEvent event( key, 1 );
-						data.EventCallback( event );
-						break;
-					}
+				case GLFW_PRESS:
+				{
+					KeyPressedEvent event( key, 0 );
+					data.EventCallback( event );
+					break;
 				}
-		});
+				case GLFW_RELEASE:
+				{
+					KeyReleasedEvent event( key );
+					data.EventCallback( event );
+					break;
+				}
+				case GLFW_REPEAT:
+				{
+					KeyPressedEvent event( key, 1 );
+					data.EventCallback( event );
+					break;
+				}
+				}
+			} );
 
 		glfwSetCharCallback( m_Window, []( GLFWwindow* window, unsigned int keyCode )
 			{

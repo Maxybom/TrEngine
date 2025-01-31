@@ -97,5 +97,4 @@ namespace TrEngine
 
 		EVENT_CLASS_TYPE( MouseButtonReleased )
 	};
-
 }

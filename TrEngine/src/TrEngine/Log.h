@@ -4,16 +4,18 @@
 #include "spdlog/sinks/stdout_color_sinks.h"
 #include "spdlog/fmt/ostr.h"
 
-namespace TrEngine {
-    class TE_API Log {
-    public:
-        static void Init();
-        static std::shared_ptr<spdlog::logger>& GetCoreLogger();
-        static std::shared_ptr<spdlog::logger>& GetClientLogger();
-    private:
-        static std::shared_ptr<spdlog::logger> s_CoreLogger;
-        static std::shared_ptr<spdlog::logger> s_ClientLogger;
-    };
+namespace TrEngine
+{
+	class TE_API Log
+	{
+	public:
+		static void Init();
+		static std::shared_ptr<spdlog::logger>& GetCoreLogger();
+		static std::shared_ptr<spdlog::logger>& GetClientLogger();
+	private:
+		static std::shared_ptr<spdlog::logger> s_CoreLogger;
+		static std::shared_ptr<spdlog::logger> s_ClientLogger;
+	};
 }
 
 // Core log macros

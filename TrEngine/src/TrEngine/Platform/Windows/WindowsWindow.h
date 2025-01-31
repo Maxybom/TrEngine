@@ -1,5 +1,4 @@
 #pragma once
-
 #include "TrEngine/Core.h"
 #include "TrEngine/Window.h"
 
@@ -18,8 +17,6 @@ namespace TrEngine {
         inline unsigned int GetHeight() const override { return m_Data.Height; }
 
         inline void* GetNativeWindow() const override { return static_cast<void*>(m_Window); }
-
-
 
         // Windows attributes
         inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
@@ -42,5 +39,4 @@ namespace TrEngine {
 
         WindowData m_Data;
     };
-
 }

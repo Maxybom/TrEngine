@@ -1,5 +1,4 @@
 #pragma once
-
 #include "TrEngine/Core.h"
 #include "TrEngine/event/Event.h"
 

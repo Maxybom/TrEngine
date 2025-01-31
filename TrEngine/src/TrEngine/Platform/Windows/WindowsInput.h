@@ -12,8 +12,6 @@ namespace TrEngine
 		virtual bool IsMouseButtonPressedImpl( int button ) override;
 		virtual float GetMouseXImpl() override;
 		virtual float GetMouseYImpl() override;
-
-		
 	};
 }
 

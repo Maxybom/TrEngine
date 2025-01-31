@@ -8,8 +8,6 @@
 #include "TrEngine/event/ApplicationEvent.h"
 #include "imgui.h"
 
-
-
 namespace TrEngine
 {
 	class TE_API ImGuiLayer : public Layer
@@ -23,7 +21,7 @@ namespace TrEngine
 		void OnUpdate();
 		void OnEvent( Event& event );
 	private:
-		bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& e);
+		bool OnMouseButtonPressedEvent( MouseButtonPressedEvent& e );
 		bool OnMouseButtonReleasedEvent( MouseButtonReleasedEvent& e );
 		bool OnMouseMovedEvent( MouseMovedEvent& e );
 		bool OnMouseScrolledEvent( MouseScrolledEvent& e );
@@ -34,6 +32,6 @@ namespace TrEngine
 
 		//void UpdateModifiers( bool shift, bool ctrl, bool alt, bool super );
 	private:
-	float m_Time =0.0f;
+		float m_Time = 0.0f;
 	};
 }

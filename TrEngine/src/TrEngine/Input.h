@@ -1,7 +1,6 @@
 #pragma once
 #include "TrEngine/Core.h"
 
-
 namespace TrEngine
 {
 	class TE_API Input

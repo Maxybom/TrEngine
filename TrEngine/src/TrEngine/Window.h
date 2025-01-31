@@ -1,8 +1,9 @@
 #pragma once
-
 #include <string>
 #include <functional>
+
 #include "TrEngine/Core.h"
+
 #include "TrEngine/event/Event.h"
 
 namespace TrEngine
