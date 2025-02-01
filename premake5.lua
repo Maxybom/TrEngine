@@ -14,10 +14,13 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "TrEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "TrEngine/vendor/glad/include"
 IncludeDir["ImGui"] = "TrEngine/vendor/Imgui"
+IncludeDir["glm"] = "TrEngine/vendor/glm"
 
 include "TrEngine/vendor/GLFW"
 include "TrEngine/vendor/Glad"
 include "TrEngine/vendor/Imgui"
+
+
 
 project "TrEngine"
     location "TrEngine"
@@ -34,10 +37,15 @@ project "TrEngine"
     {
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp",
+
         "%{prj.name}/src/TrEngine/Platform/OpenGL/ImGuiOpenGLRenderer.h",
         "%{prj.name}/src/TrEngine/Platform/OpenGL/ImGuiOpenGLRenderer.cpp",
         "%{prj.name}/vendor/Imgui/backends/imgui_impl_glfw.h",
         "%{prj.name}/vendor/Imgui/backends/imgui_impl_glfw.cpp",
+        "%{prj.name}/vendor/glm/glm/**.hpp",
+        
+        
+       
     }
 
     includedirs
@@ -45,10 +53,13 @@ project "TrEngine"
         "%{prj.name}/src",
         "%{prj.name}/vendor/spdlog/include",
         "%{prj.name}/vendor/GLFW/src",
+        "TrEngine/vendor/Imgui/backends",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
         "%{IncludeDir.ImGui}",
-        "TrEngine/vendor/Imgui/backends"
+        "%{IncludeDir.glm}",
+        
+       
     }
 
     links
@@ -114,11 +125,14 @@ project "Sandbox"
     {
         "TrEngine/vendor/spdlog/include",
         "TrEngine/vendor/GLFW/src",
+        "TrEngine/src",
+        "TrEngine/vendor/Imgui/backends",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
         "%{IncludeDir.ImGui}",
-        "TrEngine/src",
-        "TrEngine/vendor/Imgui/backends"
+        "%{IncludeDir.glm}",
+       
+        
     }
 
     links

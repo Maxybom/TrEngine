@@ -2,6 +2,7 @@
 #include "ImGuiLayer.h"
 #include "TrEngine/Application.h"
 #include "TrEngine/Input.h"
+#include "TrEngine/KeyCode.h"
 
 namespace TrEngine
 {
@@ -10,18 +11,6 @@ namespace TrEngine
 	{}
 
 	ImGuiLayer::~ImGuiLayer() = default;
-
-	ImGuiKey GLFWKeyToImGuiKey( int keycode )
-	{
-		if (keycode >= GLFW_KEY_SPACE && keycode <= GLFW_KEY_LAST)
-		{
-			ImGuiKey key = static_cast<ImGuiKey>(keycode + ImGuiKey_NamedKey_BEGIN - GLFW_KEY_SPACE);
-
-			if (ImGui::IsNamedKey( key ))//check the values
-				return key;
-		}
-		return ImGuiKey_None; //if null return this
-	}
 
 	void ImGuiLayer::OnAttach()
 	{
@@ -120,7 +109,12 @@ namespace TrEngine
 		ImGuiIO& io = ImGui::GetIO();
 		ImGuiKey key = GLFWKeyToImGuiKey( e.GetKeyCode() );
 
-		if (io.WantCaptureKeyboard) // Avoid uneccesary input
+		if (key != ImGuiKey_None)
+		{
+			io.AddKeyEvent( key, true );
+		}
+
+		if (io.WantCaptureKeyboard) // Evita input non necessari
 			return false;
 
 		return false;
@@ -129,7 +123,12 @@ namespace TrEngine
 	bool ImGuiLayer::OnKeyReleasedEvent( KeyReleasedEvent& e )
 	{
 		ImGuiIO& io = ImGui::GetIO();
-		ImGuiKey Key = GLFWKeyToImGuiKey( e.GetKeyCode() );
+		ImGuiKey key = GLFWKeyToImGuiKey( e.GetKeyCode() );
+
+		if (key != ImGuiKey_None)
+		{
+			io.AddKeyEvent( key, false );
+		}
 
 		return false;
 	}

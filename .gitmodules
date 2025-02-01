@@ -14,3 +14,6 @@
 [submodule "TrEngine/vendor/Imgui"]
 	path = TrEngine/vendor/Imgui
 	url = https://github.com/ocornut/imgui.git
+[submodule "TrEngine/vendor/glm"]
+	path = TrEngine/vendor/glm
+	url = https://github.com/g-truc/glm.git
