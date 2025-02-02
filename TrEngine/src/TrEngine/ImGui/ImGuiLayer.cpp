@@ -1,8 +1,5 @@
 #include "Tepch.h"
 #include "ImGuiLayer.h"
-#include "TrEngine/Application.h"
-#include "TrEngine/Input.h"
-#include "TrEngine/KeyCode.h"
 
 namespace TrEngine
 {
@@ -18,10 +15,10 @@ namespace TrEngine
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO();
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-		io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable; 
 
 		Application& app = Application::Get();
-		GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
+		auto* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
 
 		ImGui_ImplGlfw_InitForOpenGL( window, true );
 		ImGui_ImplOpenGL3_Init( "#version 130" );
@@ -40,7 +37,7 @@ namespace TrEngine
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
-		io.DisplaySize = ImVec2( app.GetWindow().GetWidth(), app.GetWindow().GetHeight() );
+		io.DisplaySize = ImVec2((float) app.GetWindow().GetWidth(),(float) app.GetWindow().GetHeight() );
 
 		auto time = (float) glfwGetTime();
 		io.DeltaTime = m_Time > 0.0f ? (time - m_Time) : (1.0f / 60.0f);
@@ -75,7 +72,7 @@ namespace TrEngine
 			event.SetHandled( true );
 	}
 
-	bool ImGuiLayer::OnMouseButtonPressedEvent( MouseButtonPressedEvent& e )
+	bool  ImGuiLayer::OnMouseButtonPressedEvent( MouseButtonPressedEvent& e )
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		io.MouseDown[e.GetMouseButton()] = true;

@@ -1,12 +1,17 @@
 #pragma once
 
 #include "Tepch.h"
+
 #include "imgui_impl_glfw.h"
 #include "TrEngine/Layer.h"
+#include "imgui.h"
+
 #include "TrEngine/event/MouseEvent.h"
 #include "TrEngine/event/KeyEvent.h"
 #include "TrEngine/event/ApplicationEvent.h"
-#include "imgui.h"
+#include "TrEngine/Application.h"
+#include "TrEngine/Input.h"
+#include "TrEngine/KeyCode.h"
 
 namespace TrEngine
 {
