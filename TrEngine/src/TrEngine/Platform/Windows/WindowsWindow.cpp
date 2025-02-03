@@ -41,10 +41,10 @@ namespace TrEngine
 		m_Data.Height = props.Height;
 
 		TE_CORE_INFO( "Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height );
-		
-	
 
-		
+
+
+
 
 		if (!s_GLFWInitialized)
 		{
@@ -57,10 +57,10 @@ namespace TrEngine
 
 		m_Window = glfwCreateWindow( (int) props.Width, (int) props.Height, m_Data.Title.c_str(), nullptr, nullptr );
 
-		m_Context = new OpenGLContext(m_Window);
+		m_Context = new OpenGLContext( m_Window );
 		m_Context->Init();
-		
-		
+
+
 
 		glfwSetWindowUserPointer( m_Window, &m_Data );
 		SetVSync( true );
@@ -163,7 +163,7 @@ namespace TrEngine
 		glfwPollEvents();
 		m_Context->SwapBuffers();
 		//m_Context.GetSwapChain().Flus();
-		
+
 	}
 
 	void WindowsWindow::SetVSync( bool enabled )
