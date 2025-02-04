@@ -21,7 +21,7 @@ namespace TrEngine
 
 		glfwSetInputMode( window, GLFW_CURSOR, GLFW_CURSOR_NORMAL );
 		
-
+		//window
 		NewWindow( "Editor", ImGuiWindowFlags_MenuBar );
 		NewWindow( "Console", ImGuiWindowFlags_NoCollapse );
 	}
