@@ -7,6 +7,8 @@
 
 #include "Window.h"
 
+#include "TrEngine/Renderer/Shader.h"
+
 //#include "TrEngine/ImGui/ImGuiLayer.h"
 
 namespace TrEngine
@@ -19,16 +21,16 @@ namespace TrEngine
 
 		void Run();
 
-		void OnEvent( Event& e );
+		void OnEvent(Event& e);
 
-		void PushLayer( Layer* layer );
-		void PushOverlay( Layer* laye );
+		void PushLayer(Layer* layer);
+		void PushOverlay(Layer* laye);
 
 		inline static Application& Get() { return*s_Instance; }
 
 		inline Window& GetWindow() { return *m_Window; }
 	private:
-		bool OnWindowClose( WindowCloseEvent& e );
+		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window>m_Window;
 		bool m_Running = true;
@@ -36,6 +38,7 @@ namespace TrEngine
 		//ImGuiLayer* m_ImGuiLayer;
 
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
 	private:
 		static Application* s_Instance;
 	};

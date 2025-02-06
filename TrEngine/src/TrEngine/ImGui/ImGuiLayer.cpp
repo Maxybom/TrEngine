@@ -24,6 +24,7 @@ namespace TrEngine
 		//window
 		NewWindow( "Editor", ImGuiWindowFlags_MenuBar );
 		NewWindow( "Console", ImGuiWindowFlags_NoCollapse );
+		//NewWindow( "Menu", ImGuiWindowFlags_NoCollapse );
 	}
 
 	void ImGuiLayer::OnDetach()
