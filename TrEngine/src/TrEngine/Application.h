@@ -1,15 +1,13 @@
 #pragma once
 #include "Core.h"  
+
 #include "TrEngine/LayerStack.h"
 
-#include "TrEngine/event/Event.h"
 #include "TrEngine/Event/ApplicationEvent.h"
 
 #include "Window.h"
 
 #include "TrEngine/Renderer/Shader.h"
-
-//#include "TrEngine/ImGui/ImGuiLayer.h"
 
 namespace TrEngine
 {
@@ -35,11 +33,12 @@ namespace TrEngine
 		std::unique_ptr<Window>m_Window;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-		//ImGuiLayer* m_ImGuiLayer;
 
-		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		unsigned int m_VertexArray;
+		unsigned int	m_VertexBuffer;
+		unsigned int	m_IndexBuffer;
 		std::unique_ptr<Shader> m_Shader;
-	private:
+
 		static Application* s_Instance;
 	};
 

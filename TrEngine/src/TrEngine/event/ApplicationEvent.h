@@ -3,16 +3,17 @@
 
 namespace TrEngine
 {
-
 	class TE_API WindowResizeEvent : public Event
 	{
 	public:
-		WindowResizeEvent( unsigned int width, unsigned int height )
-			: m_Width( width ), m_Height( height )
+		WindowResizeEvent(unsigned int width, unsigned int height)
+			: m_Width(width), m_Height(height)
 		{}
 
 		inline unsigned int GetWidth() const { return m_Width; }
 		inline unsigned int GetHeight() const { return m_Height; }
+
+		virtual ~WindowResizeEvent() = default;
 
 		std::string ToString() const override
 		{
@@ -21,45 +22,50 @@ namespace TrEngine
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE( WindowResize )
-			EVENT_CLASS_CATEGORY( EventCategoryApplication )
+		EVENT_CLASS_TYPE(WindowResize)
+			EVENT_CLASS_CATEGORY(EventCategoryApplication)
+
 	private:
-		unsigned int m_Width, m_Height;
+		unsigned int m_Width;
+		unsigned int m_Height;
 	};
 
 	class TE_API WindowCloseEvent : public Event
 	{
 	public:
-		WindowCloseEvent() {}
+		WindowCloseEvent() = default;
+		virtual	~WindowCloseEvent();
 
-		EVENT_CLASS_TYPE( WindowClose )
-			EVENT_CLASS_CATEGORY( EventCategoryApplication )
+		EVENT_CLASS_TYPE(WindowClose)
+			EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
 	class TE_API AppTickEvent : public Event
 	{
 	public:
-		AppTickEvent() {}
-
-		EVENT_CLASS_TYPE( AppTick )
-			EVENT_CLASS_CATEGORY( EventCategoryApplication )
+		AppTickEvent() = default;
+		virtual ~AppTickEvent();
+		EVENT_CLASS_TYPE(AppTick)
+			EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
 	class TE_API AppUpdateEvent : public Event
 	{
 	public:
-		AppUpdateEvent() {}
+		AppUpdateEvent() = default;
+		virtual	~AppUpdateEvent();
 
-		EVENT_CLASS_TYPE( AppUpdate )
-			EVENT_CLASS_CATEGORY( EventCategoryApplication )
+		EVENT_CLASS_TYPE(AppUpdate)
+			EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
 	class TE_API AppRenderEvent : public Event
 	{
 	public:
-		AppRenderEvent() {}
+		AppRenderEvent() = default;
+		virtual ~AppRenderEvent();
 
-		EVENT_CLASS_TYPE( AppRender )
-			EVENT_CLASS_CATEGORY( EventCategoryApplication )
+		EVENT_CLASS_TYPE(AppRender)
+			EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 }

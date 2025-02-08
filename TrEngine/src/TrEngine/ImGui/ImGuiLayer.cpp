@@ -1,5 +1,6 @@
 #include "Tepch.h"
 #include "ImGuiLayer.h"
+#include "TrEngine/event/ImGuiEventHandler.h"
 
 namespace TrEngine
 {
@@ -24,7 +25,7 @@ namespace TrEngine
 		//window
 		NewWindow( "Editor", ImGuiWindowFlags_MenuBar );
 		NewWindow( "Console", ImGuiWindowFlags_NoCollapse );
-		//NewWindow( "Menu", ImGuiWindowFlags_NoCollapse );
+		NewWindow( "Menu", ImGuiWindowFlags_NoCollapse );
 	}
 
 	void ImGuiLayer::OnDetach()
@@ -66,6 +67,7 @@ namespace TrEngine
 				it = m_Windows.erase( it ); //close window
 			}
 		}
+
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData( ImGui::GetDrawData() );
 		ImGui::EndFrame();
@@ -106,97 +108,5 @@ namespace TrEngine
 		{
 			m_Windows[name].isOpen = false;
 		}
-	}
-
-	// need optimization and maybe to move to another script
-	void ImGuiLayer::OnEvent( Event& event )
-	{
-		EventDispatcher dispatcher( event );
-
-		dispatcher.Dispatch<MouseButtonPressedEvent>( TE_BIND_EVENT_FN( ImGuiLayer::OnMouseButtonPressedEvent ) );
-		dispatcher.Dispatch<MouseButtonReleasedEvent>( TE_BIND_EVENT_FN( ImGuiLayer::OnMouseButtonReleasedEvent ) );
-		dispatcher.Dispatch<MouseMovedEvent>( TE_BIND_EVENT_FN( ImGuiLayer::OnMouseMovedEvent ) );
-		dispatcher.Dispatch<MouseScrolledEvent>( TE_BIND_EVENT_FN( ImGuiLayer::OnMouseScrolledEvent ) );
-		dispatcher.Dispatch<KeyPressedEvent>( TE_BIND_EVENT_FN( ImGuiLayer::OnKeyPressedEvent ) );
-		dispatcher.Dispatch<KeyReleasedEvent>( TE_BIND_EVENT_FN( ImGuiLayer::OnKeyReleasedEvent ) );
-		dispatcher.Dispatch<KeyTypedEvent>( TE_BIND_EVENT_FN( ImGuiLayer::OnKeyTypedEvent ) );
-		dispatcher.Dispatch<WindowResizeEvent>( TE_BIND_EVENT_FN( ImGuiLayer::OnWindowResizedEvent ) );
-
-		if (ImGui::GetIO().WantCaptureMouse || ImGui::GetIO().WantCaptureKeyboard)
-			event.SetHandled( true );
-	}
-
-	bool  ImGuiLayer::OnMouseButtonPressedEvent( MouseButtonPressedEvent& e )
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		io.MouseDown[e.GetMouseButton()] = true;
-		return false;
-	}
-
-	bool ImGuiLayer::OnMouseButtonReleasedEvent( MouseButtonReleasedEvent& e )
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		io.MouseDown[e.GetMouseButton()] = false;
-		return false;
-	}
-
-	bool ImGuiLayer::OnMouseMovedEvent( MouseMovedEvent& e )
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		io.MousePos = ImVec2( e.GetX(), e.GetY() );
-		return false;
-	}
-
-	bool ImGuiLayer::OnMouseScrolledEvent( MouseScrolledEvent& e )
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		io.MouseWheelH += e.GetXOffset();
-		io.MouseWheel += e.GetYOffset();
-		return false;
-	}
-
-	bool ImGuiLayer::OnKeyPressedEvent( KeyPressedEvent& e )
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		ImGuiKey key = GLFWKeyToImGuiKey( e.GetKeyCode() );
-
-		if (key != ImGuiKey_None)
-		{
-			io.AddKeyEvent( key, true );
-		}
-
-		if (io.WantCaptureKeyboard) // Evita input non necessari
-			return false;
-
-		return false;
-	}
-
-	bool ImGuiLayer::OnKeyReleasedEvent( KeyReleasedEvent& e )
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		ImGuiKey key = GLFWKeyToImGuiKey( e.GetKeyCode() );
-
-		if (key != ImGuiKey_None)
-		{
-			io.AddKeyEvent( key, false );
-		}
-
-		return false;
-	}
-
-	bool ImGuiLayer::OnKeyTypedEvent( KeyTypedEvent& e )
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		int keycode = e.GetKeyCode();
-		if (keycode > 0 && keycode < 0x10000)
-			io.AddInputCharacter( (unsigned short) keycode );
-		return false;
-	}
-
-	bool ImGuiLayer::OnWindowResizedEvent( WindowResizeEvent& e )
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		io.DisplaySize = ImVec2( (float) e.GetWidth(), (float) e.GetHeight() );
-		return false;
 	}
 }

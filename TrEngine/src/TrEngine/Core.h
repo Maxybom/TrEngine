@@ -18,7 +18,6 @@
 #define TE_CORE_ASSERT(x, ...)
 #endif // TE_ENABLE_ASSERTS
 
-
 #define BIT(x) (1 << x)
 
 #define TE_BIND_EVENT_FN(fn) std::bind(&fn,this, std::placeholders::_1)

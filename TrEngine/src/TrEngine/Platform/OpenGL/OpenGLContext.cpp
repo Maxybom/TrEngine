@@ -7,6 +7,8 @@
 
 namespace TrEngine
 {
+	OpenGLContext::~OpenGLContext()= default;
+
 	OpenGLContext::OpenGLContext( GLFWwindow* windowHandle )
 		: m_WindowHandle( windowHandle )
 	{
@@ -27,7 +29,6 @@ namespace TrEngine
 			reinterpret_cast<const char*>(glGetString( GL_RENDERER )) );
 		TE_CORE_INFO( "Version: {0}",
 			reinterpret_cast<const char*>(glGetString( GL_VERSION )) );
-
 	}
 
 	void OpenGLContext::SwapBuffers()

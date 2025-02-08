@@ -5,7 +5,6 @@
 
 namespace TrEngine
 {
-
 	enum class EventType
 	{
 		None = 0,
@@ -15,14 +14,14 @@ namespace TrEngine
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
-	enum EventCategory
+	enum  EventCategory
 	{
 		None = 0,
-		EventCategoryApplication = BIT( 0 ),
-		EventCategoryInput = BIT( 1 ),
-		EventCategoryKeyboard = BIT( 2 ),
-		EventCategoryMouse = BIT( 3 ),
-		EventCategoryMouseButton = BIT( 4 ),
+		EventCategoryApplication = BIT(0),
+		EventCategoryInput = BIT(1),
+		EventCategoryKeyboard = BIT(2),
+		EventCategoryMouse = BIT(3),
+		EventCategoryMouseButton = BIT(4),
 	};
 
 	#define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::type; }\
@@ -38,15 +37,17 @@ namespace TrEngine
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
 		virtual std::string ToString() const { return GetName(); }
-		inline bool IsInCategory( EventCategory category )
+		inline  bool IsInCategory(EventCategory category) const
 		{
 			return GetCategoryFlags() & category;
 		}
 
 		bool IsHandled() const { return m_Handled; }
-		void SetHandled( bool handled ) { m_Handled = handled; }
+		void SetHandled(bool handled) { m_Handled = handled; }
 
-	protected:
+		Event() = default;
+
+	private:
 		bool m_Handled = false;
 
 		friend class EventDispatcher;
@@ -55,18 +56,18 @@ namespace TrEngine
 	class EventDispatcher
 	{
 		template<typename T>
-		using EventFn = std::function<bool( T& )>;
+		using EventFn = std::function<bool(T&)>;
 	public:
-		EventDispatcher( Event& event )
-			: m_Event( event )
+		explicit EventDispatcher(Event& event)
+			: m_Event(event)
 		{}
 
 		template<typename T>
-		bool Dispatch( EventFn<T> func )
+		bool Dispatch(EventFn<T> func)
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.SetHandled( func( static_cast<T&>(m_Event) ) );
+				m_Event.SetHandled(func(static_cast<T&>(m_Event)));
 				return true;
 			}
 			return false;
@@ -75,7 +76,7 @@ namespace TrEngine
 		Event& m_Event;
 	};
 
-	inline std::ostream& operator<<( std::ostream& os, const Event& e )
+	inline  std::ostream& operator<<(std::ostream& os, const Event& e)
 	{
 		return os << e.ToString();
 	}
@@ -86,17 +87,16 @@ namespace fmt
 	template <>
 	struct formatter<TrEngine::Event>
 	{
-		template <typename ParseContext>
-		constexpr auto parse( ParseContext& ctx )
+		// Parse function as free function
+		friend constexpr auto parse(format_parse_context& ctx)
 		{
 			return ctx.begin();
 		}
 
-		template <typename FormatContext>
-		auto format( const TrEngine::Event& e, FormatContext& ctx )
+		// Format function as free function
+		friend auto format(const TrEngine::Event& e, format_context& ctx)
 		{
-
-			return format_to( ctx.out(), "Event: {}", e.ToString() );
+			return format_to(ctx.out(), "Event: {}", e.ToString());
 		}
 	};
 }

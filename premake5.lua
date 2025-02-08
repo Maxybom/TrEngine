@@ -20,8 +20,6 @@ include "TrEngine/vendor/GLFW"
 include "TrEngine/vendor/Glad"
 include "TrEngine/vendor/Imgui"
 
-
-
 project "TrEngine"
     location "TrEngine"
     kind "SharedLib"
@@ -42,10 +40,7 @@ project "TrEngine"
         "%{prj.name}/src/TrEngine/Platform/OpenGL/ImGuiOpenGLRenderer.cpp",
         "%{prj.name}/vendor/Imgui/backends/imgui_impl_glfw.h",
         "%{prj.name}/vendor/Imgui/backends/imgui_impl_glfw.cpp",
-        "%{prj.name}/vendor/glm/glm/**.hpp",
-        
-        
-       
+        "%{prj.name}/vendor/glm/glm/**.hpp",    
     }
 
     includedirs
@@ -57,9 +52,7 @@ project "TrEngine"
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
         "%{IncludeDir.ImGui}",
-        "%{IncludeDir.glm}",
-        
-       
+        "%{IncludeDir.glm}", 
     }
 
     links
@@ -130,9 +123,7 @@ project "Sandbox"
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
         "%{IncludeDir.ImGui}",
-        "%{IncludeDir.glm}",
-       
-        
+        "%{IncludeDir.glm}",   
     }
 
     links

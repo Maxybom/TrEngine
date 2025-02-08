@@ -9,16 +9,14 @@ namespace TrEngine
 	{
 	public:
 		OpenGLContext() = default;
-	public:
-		OpenGLContext(GLFWwindow* windowHandle);
+		~OpenGLContext();
 
-		virtual void Init() override;
-		virtual void SwapBuffers() override;
+		explicit OpenGLContext(GLFWwindow* windowHandle);
+
+		void Init() override;
+		void SwapBuffers() override;
 	private:
 		GLFWwindow* m_WindowHandle;
-	
 	};
-
-	
 }
 

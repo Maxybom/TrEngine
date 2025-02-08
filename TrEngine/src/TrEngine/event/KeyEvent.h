@@ -3,7 +3,6 @@
 
 namespace TrEngine
 {
-
 	class TE_API KeyEvent : public Event
 	{
 	public:

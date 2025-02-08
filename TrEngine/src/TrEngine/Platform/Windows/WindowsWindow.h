@@ -4,17 +4,15 @@
 #include "TrEngine/Window.h"
 #include "TrEngine/Renderer/GraphicsContext.h"
 
-
 struct GLFWwindow;
 
 namespace TrEngine
 {
-
 	class WindowsWindow : public Window
 	{
 	public:
-		WindowsWindow( const WindowProps& props );
-		virtual ~WindowsWindow();
+		explicit WindowsWindow(const WindowProps& props);
+		~WindowsWindow() override;
 
 		void OnUpdate() override;
 
@@ -24,12 +22,12 @@ namespace TrEngine
 		inline void* GetNativeWindow() const override { return static_cast<void*>(m_Window); }
 
 		// Windows attributes
-		inline void SetEventCallback( const EventCallbackFn& callback ) override { m_Data.EventCallback = callback; }
-		void SetVSync( bool enabled ) override;
+		inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
+		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;
 
 	private:
-		void Init( const WindowProps& props );
+		void Init(const WindowProps& props);
 		void Shutdown();
 
 		GLFWwindow* m_Window;
@@ -38,7 +36,8 @@ namespace TrEngine
 		struct WindowData
 		{
 			std::string Title;
-			unsigned int Width, Height;
+			unsigned int Width;
+			unsigned int Height;
 			bool VSync;
 
 			EventCallbackFn EventCallback;
