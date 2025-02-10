@@ -23,8 +23,8 @@ namespace TrEngine
 		glGenVertexArrays(1, &m_VertexArray);
 		glBindVertexArray(m_VertexArray);
 
-		glGenBuffers(1, &m_VertexBuffer);
-		glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);
+		/*glGenBuffers(1, &m_VertexBuffer);
+		glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);*/
 
 		std::array<float, 3 * 3> vertices =
 		{
@@ -33,17 +33,22 @@ namespace TrEngine
 			 0.0f,  0.5f, 0.0f
 		};
 
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices.data(), GL_STATIC_DRAW);
+		m_VertexBuffer.reset( VertexBuffer::Create(vertices.data(), sizeof(vertices)));
+		//buffer.Bind();
+
+		//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices.data(), GL_STATIC_DRAW);
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
-		glGenBuffers(1, &m_IndexBuffer);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBuffer);
+		//glGenBuffers(1, &m_IndexBuffer);
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBuffer);
 
+		
 
-		std::array<unsigned int, 3> indices = {0, 1, 2};
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices.data(), GL_STATIC_DRAW);
+		std::array<uint32_t, 3> indices = {0, 1, 2};
+		//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices.data(), GL_STATIC_DRAW);
+		m_IndexBuffer.reset(IndexBuffer::Create(indices.data(), sizeof(indices) / sizeof(uint32_t)));
 
 		std::string vertexSource = R"(
 			#version 330 core
@@ -117,7 +122,7 @@ namespace TrEngine
 
 			m_Shader->Bind();
 			glBindVertexArray(m_VertexArray);
-			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
+			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
