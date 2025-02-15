@@ -58,7 +58,7 @@ namespace TrEngine
 			{
 				ImGui::SetNextWindowDockID( ImGui::GetID( "MyDockSpace" ), ImGuiCond_FirstUseEver );
 				ImGui::Begin( it->first.c_str(), &it->second.isOpen, it->second.flags );
-				ImGui::Text( "Contenuto di %s", it->first.c_str() );
+				ImGui::Text( "Container %s", it->first.c_str() );
 				ImGui::End();
 				++it;
 			}

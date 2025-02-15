@@ -12,6 +12,27 @@ namespace TrEngine
 
 	Application* Application::s_Instance = nullptr;
 
+	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
+	{
+		switch (type)
+		{
+			case TrEngine::ShaderDataType::Float:	return GL_FLOAT;
+			case TrEngine::ShaderDataType::Float2:	return GL_FLOAT;
+			case TrEngine::ShaderDataType::Float3:	return GL_FLOAT;
+			case TrEngine::ShaderDataType::Float4:	return GL_FLOAT;
+			case TrEngine::ShaderDataType::Mat3:	return GL_FLOAT;
+			case TrEngine::ShaderDataType::Mat4:	return GL_FLOAT;
+			case TrEngine::ShaderDataType::Int:	    return GL_INT;
+			case TrEngine::ShaderDataType::Int2:	return GL_INT;
+			case TrEngine::ShaderDataType::Int3:	return GL_INT;
+			case TrEngine::ShaderDataType::Int4:	return GL_INT;
+			case TrEngine::ShaderDataType::Bool:	return GL_BOOL;
+		}
+
+		TE_CORE_ASSERT(false, "Unknown ShaderDataType!");
+		return 0;
+	}
+
 	Application::Application()
 	{
 		TE_CORE_ASSERT(!s_Instance, "Application already exists!");
@@ -23,43 +44,51 @@ namespace TrEngine
 		glGenVertexArrays(1, &m_VertexArray);
 		glBindVertexArray(m_VertexArray);
 
-		/*glGenBuffers(1, &m_VertexBuffer);
-		glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);*/
-
-		std::array<float, 3 * 3> vertices =
+		std::array<float, 3 * 7> vertices =
 		{
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.0f,  0.5f, 0.0f
+			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, // red
+			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, // green
+			 0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f  // Blue
 		};
 
-		m_VertexBuffer.reset( VertexBuffer::Create(vertices.data(), sizeof(vertices)));
-		//buffer.Bind();
+		m_VertexBuffer.reset(VertexBuffer::Create(vertices.data(), sizeof(vertices)));
+		{
+			BufferLayout layout =
+			{
+				{ ShaderDataType::Float3, "a_Position" },
+				{ ShaderDataType::Float4, "a_Color" }
+			};
 
-		//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices.data(), GL_STATIC_DRAW);
+			m_VertexBuffer->SetLayout(layout);
+		}
 
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
-
-		//glGenBuffers(1, &m_IndexBuffer);
-		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBuffer);
-
-		
+		uint32_t index = 0;
+		const auto& layout = m_VertexBuffer->GetLayout();
+		for (const auto& element : layout)
+		{
+			glEnableVertexAttribArray(index);
+			glVertexAttribPointer(index, element.GetComponentCount(), ShaderDataTypeToOpenGLBaseType(element.Type),
+				element.Normalized ? GL_TRUE : GL_FALSE,
+				m_VertexBuffer->GetLayout().GetStride(), (const void*) element.Offset);
+			index++;
+		}
 
 		std::array<uint32_t, 3> indices = {0, 1, 2};
-		//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices.data(), GL_STATIC_DRAW);
 		m_IndexBuffer.reset(IndexBuffer::Create(indices.data(), sizeof(indices) / sizeof(uint32_t)));
 
 		std::string vertexSource = R"(
 			#version 330 core
 
 			layout(location = 0) in vec3 a_Position;
+			layout(location = 0) in vec4 a_Color;
 
 			out vec3 v_Position;
+			out vec4 v_Color;
 
 			void main()
 			{ 
 				v_Position = a_Position;
+				v_Color = a_Color;
 				gl_Position = vec4(a_Position, 1.0);
 			}
 		)";
@@ -67,14 +96,18 @@ namespace TrEngine
 		std::string fragmentSource = R"(
 			#version 330 core
 
-			layout(location = 0) out vec4 color;
+		layout(location = 0) out vec4 color;
 
-			in vec3 v_Position;
+		in vec3 v_Position;
+		in vec4 v_Color;
 
-			void main()
-			{ 
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
-			}
+		void main()
+		{
+			// Mescola il colore del vertice con una componente basata sulla posizione
+			vec3 mixedColor = mix(v_Color.rgb, vec3(v_Position * 0.5 + 0.5), 0.5);
+			color = vec4(mixedColor, v_Color.a);
+		}
+
 		)";
 
 		m_Shader.reset(new Shader(vertexSource, fragmentSource));
