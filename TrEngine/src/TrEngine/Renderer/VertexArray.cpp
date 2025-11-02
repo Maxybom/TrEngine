@@ -9,8 +9,8 @@ namespace TrEngine
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:		TE_CORE_ASSERT(false, "RendererAPI::None is not supported");
-		case RendererAPI::OpenGL:	return new OpenGLVertexArray();
+		case RendererAPI::API::None:		TE_CORE_ASSERT(false, "RendererAPI::None is not supported");
+		case RendererAPI::API::OpenGL:	return new OpenGLVertexArray();
 		}
 
 		TE_CORE_ASSERT(false, "Unknown rendererAPI!");

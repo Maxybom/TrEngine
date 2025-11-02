@@ -9,10 +9,10 @@ namespace TrEngine
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None:
+		case RendererAPI::API::None:
 			TE_CORE_ASSERT(false, "RendererAPI::None is not supported");
 				return nullptr;
-			case RendererAPI::OpenGL:
+			case RendererAPI::API::OpenGL:
 				return new OpenGLVertexBuffer(vertices, size);
 		}
 		TE_CORE_ASSERT(false, "Unknown rendererAPI!");
@@ -23,10 +23,10 @@ namespace TrEngine
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:
+		case RendererAPI::API::None:
 			TE_CORE_ASSERT(false, "RendererAPI::None is not supported");
 			return nullptr;
-		case RendererAPI::OpenGL:
+		case RendererAPI::API::OpenGL:
 			return new OpenGLIndexBuffer(indices, size);
 		}
 		TE_CORE_ASSERT(false, "Unknown rendererAPI!");

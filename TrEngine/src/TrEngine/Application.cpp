@@ -6,9 +6,11 @@
 #include "TrEngine/Event/ApplicationEvent.h"
 #include "Input.h"
 
+#include "Trengine/Renderer/Renderer.h"
+
 namespace TrEngine
 {
-	#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
+#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 	Application* Application::s_Instance = nullptr;
 
@@ -40,7 +42,7 @@ namespace TrEngine
 		m_VertexBuffer->SetLayout(layout);
 		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
 
-		std::array<uint32_t, 3> indices = {0, 1, 2};
+		std::array<uint32_t, 3> indices = { 0, 1, 2 };
 		m_IndexBuffer.reset(IndexBuffer::Create(indices.data(), sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 
@@ -62,7 +64,7 @@ namespace TrEngine
 			});
 		m_SquareVA->AddVertexBuffer(SquareVB);
 
-		std::array<uint32_t, 6> squareIndices = {0, 1, 2, 2, 3, 0};
+		std::array<uint32_t, 6> squareIndices = { 0, 1, 2, 2, 3, 0 };
 		std::shared_ptr<IndexBuffer> squareIB(IndexBuffer::Create(squareIndices.data(), sizeof(squareIndices) / sizeof(uint32_t)), [](IndexBuffer* ptr) { delete ptr; });
 
 		m_SquareVA->SetIndexBuffer(squareIB);
@@ -170,16 +172,29 @@ namespace TrEngine
 	{
 		while (m_Running)
 		{
-			glClearColor(0.2, 0.2, 0.2, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			//glClearColor(0.2, 0.2, 0.2, 1);
+			//glClear(GL_COLOR_BUFFER_BIT);
+
+			RenderCommand::SetClearColor({ 0.2, 0.2, 0.2, 1 });
+			RenderCommand::Clear();
+
+			Renderer::BeginScene();
 
 			m_Shader2->Bind();
+			Renderer::Submit(m_VertexArray);
+
+			m_Shader->Bind();
+			Renderer::Submit(m_VertexArray);
+
+			Renderer::EndScene();
+
+			/*m_Shader2->Bind();
 			m_SquareVA->Bind();
 			glDrawElements(GL_TRIANGLES, m_SquareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			m_Shader->Bind();
 			m_VertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);*/
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
