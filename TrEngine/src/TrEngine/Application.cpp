@@ -1,4 +1,4 @@
-#include "Tepch.h"
+﻿#include "Tepch.h"
 
 #include "Application.h"
 #include "TrEngine/Log.h"
@@ -176,10 +176,11 @@ namespace TrEngine
 	{
 		while (m_Running)
 		{
+			// ✅ Aggiorna ad ogni frame
+			glViewport(0, 0, m_Window->GetWidth(), m_Window->GetHeight());
+			
 			RenderCommand::SetClearColor({ 0.2, 0.2, 0.2, 1 });
 			RenderCommand::Clear();
-			
-			glViewport(0, 0, m_Window->GetWidth(), m_Window->GetHeight());
 
 			m_Camera.SetRotation(45.0f);
 
