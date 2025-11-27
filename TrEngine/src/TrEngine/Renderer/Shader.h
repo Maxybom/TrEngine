@@ -1,5 +1,7 @@
 #pragma once
+
 #include <string>
+#include <glm/glm.hpp>
 
 namespace TrEngine
 {
@@ -11,6 +13,8 @@ namespace TrEngine
 
 		void Bind() const;
 		void Unbind() const;
+
+		void uploadUniformMat4(const std::string& name, const glm::mat4 matrix);
 	private:
 		uint32_t m_RendererId;
 	};

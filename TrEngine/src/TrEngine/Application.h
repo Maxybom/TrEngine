@@ -1,5 +1,5 @@
 #pragma once
-#include "Core.h"  
+#include "Core.h"
 
 #include "TrEngine/LayerStack.h"
 
@@ -10,6 +10,7 @@
 #include "TrEngine/Renderer/Shader.h"
 #include "TrEngine/Renderer/Buffer.h"
 #include "TrEngine/Renderer/VertexArray.h"
+#include "TrEngine/Renderer/OrthographicCamera.h"
 
 namespace TrEngine
 {
@@ -44,8 +45,10 @@ namespace TrEngine
 		std::shared_ptr<Shader> m_Shader2;
 		std::shared_ptr<VertexArray> m_SquareVA;
 
+		OrthographicCamera m_Camera;
+
 		static Application* s_Instance;
 	};
-	//to be defined in CLIENT 
+	//to be defined in CLIENT
 	Application* CreateApplication();
 }
