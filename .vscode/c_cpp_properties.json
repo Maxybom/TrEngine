@@ -1,0 +1,27 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/TrEngine/src",
+                "${workspaceFolder}/TrEngine/vendor/spdlog/include",
+                "${workspaceFolder}/TrEngine/vendor/GLFW/include",
+                "${workspaceFolder}/TrEngine/vendor/Glad/include", 
+                "${workspaceFolder}/TrEngine/vendor/Imgui",
+                "${workspaceFolder}/TrEngine/vendor/glm"
+            ],
+            "defines": [
+                "_DEBUG", "TE_DEBUG", "_WIN32", "_WINDLL", "UNICODE", "_UNICODE",
+                "TE_PLATFORM_WINDOWS", "TE_BUILD_DLL", "IMGUI_IMPL_OPENGL_LOADER_CUSTOM",
+                "_GLFW_WIN32", "GLFW_EXPOSE_NATIVE_WIN32", "GLFW_INCLUDE_NONE"
+            ],
+            "windowsSdkVersion": "10.0.22621.0",
+            "compilerPath": "cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64"
+        }
+    ],
+    "version": 4
+}
