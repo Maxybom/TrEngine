@@ -16,7 +16,6 @@
                 "isDefault": false
             },
             "problemMatcher": "$msCompile",
-            "detail": "Compila tutto il progetto usando la soluzione SLN."
         },
         {
             "type": "cppbuild",
