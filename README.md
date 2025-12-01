@@ -9,4 +9,4 @@ Actually is just a initial prototype.
 Instruction:
 1)Clone repository
 2)Start the batch script "GenerateProject"
-3) run with visual studio(2022 recommended)
+3)Actually tested on windows with visual studio community 2022 and visual studio code

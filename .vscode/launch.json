@@ -2,15 +2,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Sandbox",
+            "name": "Sandbox (Debug)", 
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/Debug-windows-x86_64/Sandbox/Sandbox.exe",
+            "program": "${workspaceFolder}/bin/Debug-windows-x86_64/Sandbox/Sandbox.exe", 
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/Sandbox", 
             "console": "externalTerminal",
-            "preLaunchTask": "Build TrEngine (Debug)" 
+            "preLaunchTask": "Build TrEngine (Debug)"
         }
     ]
 }

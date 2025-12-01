@@ -176,7 +176,6 @@ namespace TrEngine
 	{
 		while (m_Running)
 		{
-			// ✅ Aggiorna ad ogni frame
 			glViewport(0, 0, m_Window->GetWidth(), m_Window->GetHeight());
 			
 			RenderCommand::SetClearColor({ 0.2, 0.2, 0.2, 1 });
