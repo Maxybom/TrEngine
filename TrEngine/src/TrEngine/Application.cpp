@@ -12,7 +12,7 @@ namespace TrEngine
 {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
-	Application* Application::s_Instance = nullptr;
+	Application *Application::s_Instance = nullptr;
 
 	Application::Application()
 		: m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
@@ -26,46 +26,44 @@ namespace TrEngine
 		m_VertexArray.reset(VertexArray::Create());
 
 		std::array<float, 3 * 7> vertices =
-		{
-			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, // red
-			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, // green
-			 0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f  // Blue
-		};
+			{
+				-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, // red
+				0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,	// green
+				0.0f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f	// blue
+			};
 
 		m_VertexBuffer.reset(VertexBuffer::Create(vertices.data(), sizeof(vertices)));
 
 		BufferLayout layout =
-		{
-			{ ShaderDataType::Float3, "a_Position" },
-			{ ShaderDataType::Float4, "a_Color" }
-		};
+			{
+				{ShaderDataType::Float3, "a_Position"},
+				{ShaderDataType::Float4, "a_Color"}};
 
 		m_VertexBuffer->SetLayout(layout);
 		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
 
-		std::array<uint32_t, 3> indices = { 0, 1, 2 };
+		std::array<uint32_t, 3> indices = {0, 1, 2};
 		m_IndexBuffer.reset(IndexBuffer::Create(indices.data(), sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 
 		m_SquareVA.reset(VertexArray::Create());
 
 		std::array<float, 3 * 4> squareVertices =
-		{
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
-		};
+			{
+				-0.5f, -0.5f, 0.0f,
+				0.5f, -0.5f, 0.0f,
+				0.5f, 0.5f, 0.0f,
+				-0.5f, 0.5f, 0.0f};
 
-		std::shared_ptr<VertexBuffer> SquareVB(VertexBuffer::Create(squareVertices.data(), sizeof(squareVertices)), [](VertexBuffer* ptr) { delete ptr; });
+		std::shared_ptr<VertexBuffer> SquareVB(VertexBuffer::Create(squareVertices.data(), sizeof(squareVertices)), [](VertexBuffer *ptr)
+											   { delete ptr; });
 
-		SquareVB->SetLayout({
-			{ ShaderDataType::Float3, "a_Position" }
-			});
+		SquareVB->SetLayout({{ShaderDataType::Float3, "a_Position"}});
 		m_SquareVA->AddVertexBuffer(SquareVB);
 
-		std::array<uint32_t, 6> squareIndices = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<IndexBuffer> squareIB(IndexBuffer::Create(squareIndices.data(), sizeof(squareIndices) / sizeof(uint32_t)), [](IndexBuffer* ptr) { delete ptr; });
+		std::array<uint32_t, 6> squareIndices = {0, 1, 2, 2, 3, 0};
+		std::shared_ptr<IndexBuffer> squareIB(IndexBuffer::Create(squareIndices.data(), sizeof(squareIndices) / sizeof(uint32_t)), [](IndexBuffer *ptr)
+											  { delete ptr; });
 
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -141,19 +139,19 @@ namespace TrEngine
 
 	Application::~Application() = default;
 
-	void Application::PushLayer(Layer* layer)
+	void Application::PushLayer(Layer *layer)
 	{
 		m_LayerStack.PushLayer(layer);
 		layer->OnAttach();
 	}
 
-	void Application::PushOverlay(Layer* layer)
+	void Application::PushOverlay(Layer *layer)
 	{
 		m_LayerStack.PushOverlay(layer);
 		layer->OnAttach();
 	}
 
-	void Application::OnEvent(Event& e)
+	void Application::OnEvent(Event &e)
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
@@ -177,27 +175,31 @@ namespace TrEngine
 		while (m_Running)
 		{
 			glViewport(0, 0, m_Window->GetWidth(), m_Window->GetHeight());
-			
-			RenderCommand::SetClearColor({ 0.2, 0.2, 0.2, 1 });
+
+			RenderCommand::SetClearColor({0.2, 0.2, 0.2, 1});
 			RenderCommand::Clear();
 
 			m_Camera.SetRotation(45.0f);
 
 			Renderer::BeginScene(m_Camera);
-
 			Renderer::Submit(m_Shader2, m_VertexArray);
 			Renderer::Submit(m_Shader, m_VertexArray);
-
 			Renderer::EndScene();
 
-			for (Layer* layer : m_LayerStack)
+			for (Layer *layer : m_LayerStack)
 				layer->OnUpdate();
+
+			m_ImGuiLayer->Begin();
+
+			for (Layer *layer : m_LayerStack)
+				layer->OnImGuiRender();
+
+			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
 		}
 	}
-
-	bool Application::OnWindowClose(WindowCloseEvent& e)
+	bool Application::OnWindowClose(WindowCloseEvent &e)
 	{
 		m_Running = false;
 		return true;

@@ -1,112 +1,173 @@
 #include "Tepch.h"
 #include "ImGuiLayer.h"
-#include "TrEngine/event/ImGuiEventHandler.h"
+
+#include "TrEngine/Application.h"
+
+#include <backends/imgui_impl_glfw.h>
+
+#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 namespace TrEngine
 {
-	ImGuiLayer::ImGuiLayer() : Layer( "ImGuiLayer" ) {}
-	ImGuiLayer::~ImGuiLayer() = default;
+    ImGuiLayer::ImGuiLayer() : Layer("ImGuiLayer") {}
+    ImGuiLayer::~ImGuiLayer() = default;
 
-	void ImGuiLayer::OnAttach()
-	{
-		IMGUI_CHECKVERSION();
-		ImGui::CreateContext();
-		ImGuiIO& io = ImGui::GetIO();
-		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+    void ImGuiLayer::OnAttach()
+    {
+        IMGUI_CHECKVERSION();
+        ImGui::CreateContext();
+        ImGuiIO &io = ImGui::GetIO();
+        (void)io;
 
-		Application& app = Application::Get();
-		auto* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
-		ImGui_ImplGlfw_InitForOpenGL( window, true );
-		ImGui_ImplOpenGL3_Init( "#version 130" );
+        io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+        io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+        io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
-		glfwSetInputMode( window, GLFW_CURSOR, GLFW_CURSOR_NORMAL );
-		
-		//window
-		NewWindow( "Editor", ImGuiWindowFlags_MenuBar );
-		NewWindow( "Console", ImGuiWindowFlags_NoCollapse );
-		NewWindow( "Menu", ImGuiWindowFlags_NoCollapse );
-	}
+        ImGui::StyleColorsDark();
+        SetDarkThemeColors();
 
-	void ImGuiLayer::OnDetach()
-	{
-		ImGui_ImplOpenGL3_Shutdown();
-		ImGui_ImplGlfw_Shutdown();
-		ImGui::DestroyContext();
-	}
+        ImGuiStyle &style = ImGui::GetStyle();
+        if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+        {
+            style.WindowRounding = 0.0f;
+            style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+        }
 
-	void ImGuiLayer::OnUpdate()
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		Application& app = Application::Get();
-		io.DisplaySize = ImVec2( app.GetWindow().GetWidth(), app.GetWindow().GetHeight() );
+        Application &app = Application::Get();
+        GLFWwindow *window = static_cast<GLFWwindow *>(app.GetWindow().GetNativeWindow());
 
-		auto time = (float) glfwGetTime();
-		io.DeltaTime = m_Time > 0.0f ? (time - m_Time) : (1.0f / 60.0f);
-		m_Time = time;
+        ImGui_ImplGlfw_InitForOpenGL(window, true);
+        ImGui_ImplOpenGL3_Init("#version 410");
 
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
+        NewWindow("Editor", ImGuiWindowFlags_MenuBar);
+        NewWindow("Console", ImGuiWindowFlags_NoCollapse);
+    }
 
-		SetupDockSpace();
+    void ImGuiLayer::OnDetach()
+    {
+        ImGui_ImplOpenGL3_Shutdown();
+        ImGui_ImplGlfw_Shutdown();
+        ImGui::DestroyContext();
+    }
 
-		// window manager
-		for (auto it = m_Windows.begin(); it != m_Windows.end();)
-		{
-			if (it->second.isOpen)
-			{
-				ImGui::SetNextWindowDockID( ImGui::GetID( "MyDockSpace" ), ImGuiCond_FirstUseEver );
-				ImGui::Begin( it->first.c_str(), &it->second.isOpen, it->second.flags );
-				ImGui::Text( "Container %s", it->first.c_str() );
-				ImGui::End();
-				++it;
-			}
-			else
-			{
-				it = m_Windows.erase( it ); //close window
-			}
-		}
+    void ImGuiLayer::OnEvent(Event &e)
+    {
+        if (m_BlockEvents)
+        {
+            ImGuiIO &io = ImGui::GetIO();
 
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData( ImGui::GetDrawData() );
-		ImGui::EndFrame();
-	}
+            if (e.IsInCategory(EventCategoryMouse) && io.WantCaptureMouse)
+            {
+                e.SetHandled(true);
+                return;
+            }
 
-	void ImGuiLayer::SetupDockSpace()
-	{
-		ImGuiIO& io = ImGui::GetIO();
+            if (e.IsInCategory(EventCategoryKeyboard) && io.WantCaptureKeyboard)
+            {
+                e.SetHandled(true);
+                return;
+            }
+        }
+    }
 
-		// position of visible windows
-		ImGui::SetNextWindowPos( ImVec2( 0, 0 ) );
-		ImGui::SetNextWindowSize( io.DisplaySize );
-		ImGui::SetNextWindowBgAlpha( 0.0f );
-		ImGui::PushStyleVar( ImGuiStyleVar_WindowRounding, 0.0f );
-		ImGui::PushStyleVar( ImGuiStyleVar_WindowBorderSize, 0.0f );
-		ImGui::PushStyleVar( ImGuiStyleVar_WindowPadding, ImVec2( 0.0f, 0.0f ) );
+    void ImGuiLayer::Begin()
+    {
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+    }
 
-		ImGui::Begin( "DockSpace Window", nullptr,
-			ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse |
-			ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove |
-			ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus );
+    void ImGuiLayer::OnImGuiRender()
+    {
+        SetupDockSpace();
+        static bool show = true;
+        ImGui::ShowDemoWindow(&show);
 
-		ImGuiID dockspace_id = ImGui::GetID( "MyDockSpace" );
-		ImGui::DockSpace( dockspace_id, ImVec2( 0.0f, 0.0f ), ImGuiDockNodeFlags_PassthruCentralNode );
+        for (auto it = m_Windows.begin(); it != m_Windows.end();)
+        {
+            if (it->second.isOpen)
+            {
+                ImGui::SetNextWindowDockID(ImGui::GetID("MyDockSpace"), ImGuiCond_FirstUseEver);
 
-		ImGui::End();
-		ImGui::PopStyleVar( 3 );
-	}
+                if (ImGui::Begin(it->first.c_str(), &it->second.isOpen, it->second.flags))
+                {
+                    ImGui::Text("Contenuto di %s", it->first.c_str());
+                }
+                ImGui::End();
+                ++it;
+            }
+            else
+            {
+                it = m_Windows.erase(it);
+            }
+        }
+    }
 
-	void ImGuiLayer::NewWindow( const std::string& name, ImGuiWindowFlags flags )
-	{
-		m_Windows[name] = {true, flags};
-	}
+    void ImGuiLayer::End()
+    {
+        ImGuiIO &io = ImGui::GetIO();
+        Application &app = Application::Get();
+        io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
 
-	void ImGuiLayer::CloseWindow( const std::string& name )
-	{
-		if (m_Windows.find( name ) != m_Windows.end())
-		{
-			m_Windows[name].isOpen = false;
-		}
-	}
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+        if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+        {
+            GLFWwindow *backup_current_context = glfwGetCurrentContext();
+            ImGui::UpdatePlatformWindows();
+            ImGui::RenderPlatformWindowsDefault();
+            glfwMakeContextCurrent(backup_current_context);
+        }
+    }
+
+    void ImGuiLayer::SetupDockSpace()
+    {
+        ImGuiViewport *viewport = ImGui::GetMainViewport();
+
+        ImGui::SetNextWindowPos(viewport->Pos);
+        ImGui::SetNextWindowSize(viewport->Size);
+        ImGui::SetNextWindowViewport(viewport->ID);
+
+        ImGui::SetNextWindowBgAlpha(0.0f);
+
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
+
+        ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoDocking;
+        window_flags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
+        window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
+
+        ImGui::Begin("DockSpace Demo", nullptr, window_flags);
+
+        ImGui::PopStyleVar(3);
+
+        ImGuiIO &io = ImGui::GetIO();
+        if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
+        {
+            ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
+            ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
+        }
+
+        ImGui::End();
+    }
+
+    void ImGuiLayer::NewWindow(const std::string &name, ImGuiWindowFlags flags)
+    {
+        m_Windows[name] = {true, flags};
+    }
+
+    void ImGuiLayer::CloseWindow(const std::string &name)
+    {
+        if (m_Windows.find(name) != m_Windows.end())
+            m_Windows[name].isOpen = false;
+    }
+
+    void ImGuiLayer::SetDarkThemeColors()
+    {
+        auto &colors = ImGui::GetStyle().Colors;
+        colors[ImGuiCol_WindowBg] = ImVec4{0.1f, 0.105f, 0.11f, 1.0f};
+    }
 }
