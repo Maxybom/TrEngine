@@ -66,7 +66,7 @@ namespace TrEngine
 	{
 		while (m_Running)
 		{
-			glViewport(0, 0, m_Window->GetWidth(), m_Window->GetHeight());
+			RenderCommand::SetViewport(0, 0, m_Window->GetWidth(), m_Window->GetHeight());
 
 			for (Layer *layer : m_LayerStack)
 				layer->OnUpdate();

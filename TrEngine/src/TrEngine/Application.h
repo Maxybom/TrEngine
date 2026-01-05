@@ -2,15 +2,8 @@
 #include "Core.h"
 
 #include "TrEngine/LayerStack.h"
-
 #include "TrEngine/Event/ApplicationEvent.h"
-
 #include "Window.h"
-
-#include "TrEngine/Renderer/Shader.h"
-#include "TrEngine/Renderer/Buffer.h"
-#include "TrEngine/Renderer/VertexArray.h"
-#include "TrEngine/Renderer/OrthographicCamera.h"
 #include "TrEngine/ImGui/ImGuiLayer.h"
 namespace TrEngine
 {

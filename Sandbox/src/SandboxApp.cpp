@@ -154,8 +154,6 @@ public:
 		TrEngine::Renderer::Submit(m_Shader, m_VertexArray); // first this
 		TrEngine::Renderer::Submit(m_Shader2, m_SquareVA);	 // second square
 
-		TrEngine::Renderer::Submit(m_Shader2, m_VertexArray);
-
 		TrEngine::Renderer::EndScene();
 	}
 
