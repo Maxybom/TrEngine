@@ -19,6 +19,13 @@ project "GLAD"
         "include"
     }
 
+    -- === LINUX ===
+    filter "system:linux"
+        pic "On"               
+        buildoptions { "-fPIC" } -- In case firts try fail
+        systemversion "latest"
+
+    -- === WINDOWS ===
     filter "system:windows"
         systemversion "latest"
         staticruntime "On"

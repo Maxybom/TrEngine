@@ -7,8 +7,6 @@ project "ImGui"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-  
-
     files
     {
         "imconfig.h",
@@ -29,9 +27,14 @@ project "ImGui"
         ".",
         "%{prj.name}/backends",
         "%{IncludeDir.GLFW}",
-
-       
     }
+
+    -- LINUX --
+    filter "system:linux"
+        pic "On"            
+        systemversion "latest"
+        cppdialect "C++17"  
+    --------------------------------------
 
     filter "system:windows"
         systemversion "latest"

@@ -2,9 +2,9 @@
 #include "imgui.h"
 
 #include "Event.h"
-#include "TrEngine/event/MouseEvent.h"
-#include "TrEngine/event/KeyEvent.h"
-#include "TrEngine/event/ApplicationEvent.h"
+#include "TrEngine/Event/MouseEvent.h"
+#include "TrEngine/Event/KeyEvent.h"
+#include "TrEngine/Event/ApplicationEvent.h"
 #include "TrEngine/KeyCode.h"
 
 namespace TrEngine

@@ -2,15 +2,37 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Sandbox (Debug)", 
-            "type": "cppvsdbg",
+            "name": "Sandbox",
+            "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/Debug-windows-x86_64/Sandbox/Sandbox.exe", 
+            "program": "${workspaceFolder}/bin/Debug-linux-x86_64/Sandbox",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/Sandbox", 
+            "cwd": "${workspaceFolder}/Sandbox",
             "console": "externalTerminal",
-            "preLaunchTask": "Build TrEngine (Debug)"
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "environment": [
+                {
+                    "name": "LD_LIBRARY_PATH",
+                    "value": "${workspaceFolder}/bin/Debug-linux-x86_64"
+                }
+            ],
+            "linux": {
+                "type": "cppdbg",
+                "MIMode": "gdb"
+            },
+            "windows": {
+                "type": "cppvsdbg",
+                "program": "${workspaceFolder}/bin/Debug-windows-x86_64/Sandbox.exe"
+            }
         }
     ]
 }
