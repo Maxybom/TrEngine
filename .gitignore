@@ -222,3 +222,20 @@ ClientBin/
 *.pfx
 *.publishsettings
 orleans.codegen.cs
+
+# do not ignore
+# 1. Ignora COMPLETAMENTE qualsiasi cartella chiamata vendor ovunque sia
+# Questo copre sia quella nella root che quella dentro l'Engine
+**/vendor/
+
+# 2. Ora crea un'eccezione SOLO per la cartella vendor nella root
+# Lo slash all'inizio è la "chiave": significa "parti dalla root del progetto"
+!/vendor/
+
+# 3. Ignora tutto dentro il vendor della root (per sicurezza)
+/vendor/*
+
+# 4. Apri il tunnel solo per premake dentro il vendor della root
+!/vendor/bin/
+!/vendor/bin/premake/
+!/vendor/bin/premake/**

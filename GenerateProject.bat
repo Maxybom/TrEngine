@@ -14,6 +14,6 @@ rmdir /S /Q "bin-int"
 echo Clean complete
 echo premake execution
 
-call vendor\bin\premake\premake5.exe vs2022
+call vendor\bin\premake\Windows\premake5.exe vs2022
 
 PAUSE

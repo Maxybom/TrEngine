@@ -32,7 +32,7 @@ project "TrEngine"
     cppdialect "C++17"
     staticruntime "Off"
 
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    targetdir ("bin/" .. outputdir)
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
     pchheader "Tepch.h"
@@ -68,7 +68,6 @@ project "TrEngine"
         "ImGui",
     }
 
-    -- WINDOWS --
     filter "system:windows"
         systemversion "latest"
 
@@ -78,6 +77,7 @@ project "TrEngine"
             "_WINDLL",
             "TE_PLATFORM_WINDOWS",
             "TE_BUILD_DLL",
+            "TE_DYNAMIC_LINK", 
             "IMGUI_IMPL_OPENGL_LOADER_CUSTOM",
             "_GLFW_WIN32",
             "GLFW_EXPOSE_NATIVE_WIN32",
@@ -88,19 +88,14 @@ project "TrEngine"
         {
             "opengl32.lib" 
         }
-        -- Post Build Commands Windows
-        postbuildcommands
-        {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox/")
-        }
 
-    -- LINUX --
     filter "system:linux"
         systemversion "latest"
 
         defines
         {
             "TE_PLATFORM_LINUX",
+            "TE_DYNAMIC_LINK", 
             "IMGUI_IMPL_OPENGL_LOADER_CUSTOM",
             "GLFW_INCLUDE_NONE",
             "_GLFW_X11"
@@ -118,24 +113,6 @@ project "TrEngine"
             "dl"
         }
 
-    filter "configurations:Debug"
-        defines "TE_DEBUG"
-        symbols "On"
-
-    filter "configurations:Release"
-        defines "TE_RELEASE"
-        optimize "On"
-
-    filter "configurations:Dist"
-        defines "TE_DIST"
-        optimize "On"
-    
-    filter { "system:windows", "configurations:Debug" }
-        buildoptions "/MDd"
-    filter { "system:windows", "configurations:Release or Dist" }
-        buildoptions "/MD"
-
-
 -- ==========================================
 -- PROJECT: Sandbox
 -- ==========================================
@@ -146,7 +123,7 @@ project "Sandbox"
     cppdialect "C++17"
     staticruntime "Off"
 
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    targetdir ("bin/" .. outputdir)
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
     files
@@ -172,46 +149,52 @@ project "Sandbox"
         "TrEngine",
     }
 
-    -- WINDOWS --
     filter "system:windows"
         systemversion "latest"
 
         defines
         {
             "_WIN32",
-            "_WINDLL",
             "TE_PLATFORM_WINDOWS",
+            "TE_DYNAMIC_LINK", 
             "IMGUI_IMPL_OPENGL_LOADER_CUSTOM",
             "_GLFW_WIN32",
             "GLFW_EXPOSE_NATIVE_WIN32",
             "GLFW_INCLUDE_NONE",
         }
 
-    -- LINUX --
     filter "system:linux"
         systemversion "latest"
 
         defines
         {
             "TE_PLATFORM_LINUX",
+            "TE_DYNAMIC_LINK",
             "IMGUI_IMPL_OPENGL_LOADER_CUSTOM",
             "GLFW_INCLUDE_NONE",
             "_GLFW_X11"
         }
 
-    filter "configurations:Debug"
-        defines "TE_DEBUG"
-        symbols "On"
+-- ==========================================
+-- GLOBAL CONFIGURATIONS
+-- ==========================================
+filter "configurations:Debug"
+    defines "TE_DEBUG"
+    symbols "On"
+    filter "system:windows"
+        runtime "Debug"
+        staticruntime "Off" 
 
-    filter "configurations:Release"
-        defines "TE_RELEASE"
-        optimize "On"
+filter "configurations:Release"
+    defines "TE_RELEASE"
+    optimize "On"
+    filter "system:windows"
+        runtime "Release"
+        staticruntime "Off" 
 
-    filter "configurations:Dist"
-        defines "TE_DIST"
-        optimize "On"
-
-    filter { "system:windows", "configurations:Debug" }
-        buildoptions "/MDd"
-    filter { "system:windows", "configurations:Release or Dist" }
-        buildoptions "/MD"
+filter "configurations:Dist"
+    defines "TE_DIST"
+    optimize "On"
+    filter "system:windows"
+        runtime "Release"
+        staticruntime "Off"
