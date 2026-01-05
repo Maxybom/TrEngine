@@ -1,10 +1,10 @@
 #pragma once
 
-#ifdef TE_PLATFORM_WINDOWS	
+#ifdef TE_PLATFORM_WINDOWS
 
-extern TrEngine::Application* TrEngine::CreateApplication();
+extern TrEngine::Application *TrEngine::CreateApplication();
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
 	TrEngine::Log::Init();
 	TE_CORE_WARN("Inizialized log!");
@@ -16,4 +16,3 @@ int main(int argc, char** argv)
 	delete app;
 }
 #endif // TE_PLATFORM_WINDOWS
-

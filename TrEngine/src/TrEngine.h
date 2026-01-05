@@ -11,6 +11,17 @@
 #include "TrEngine/Layer.h"
 #include "TrEngine/ImGui/ImGuiLayer.h"
 
+//------------------ Render -------------------
+#include "TrEngine/Renderer/Renderer.h"
+#include "TrEngine/Renderer/RenderCommand.h"
+
+#include "TrEngine/Renderer/Shader.h"
+#include "TrEngine/Renderer/Buffer.h"
+#include "TrEngine/Renderer/VertexArray.h"
+
+#include "TrEngine/Renderer/OrthographicCamera.h"
+//--------------------------------------------------
+
 //------------------ Entry Point -------------------
 #include "TrEngine/EntryPoint.h"
 //--------------------------------------------------

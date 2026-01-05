@@ -25,7 +25,7 @@ namespace TrEngine
 		void OnEvent(Event &e);
 
 		void PushLayer(Layer *layer);
-		void PushOverlay(Layer *laye);
+		void PushOverlay(Layer *layer);
 
 		inline static Application &Get() { return *s_Instance; }
 
@@ -38,16 +38,6 @@ namespace TrEngine
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 		ImGuiLayer *m_ImGuiLayer;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<VertexBuffer> m_VertexBuffer;
-		std::shared_ptr<IndexBuffer> m_IndexBuffer;
-
-		std::shared_ptr<Shader> m_Shader2;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
-		OrthographicCamera m_Camera;
 
 		static Application *s_Instance;
 	};
