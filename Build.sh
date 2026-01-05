@@ -2,8 +2,12 @@
 
 set -e
 
+PREMAKE_PATH="./vendor/bin/premake/Linux/premake5"
+
+chmod +x $PREMAKE_PATH
+
 echo "========== Generating Project Files =========="
-./premake5 gmake2
+$PREMAKE_PATH gmake2
 
 echo ""
 echo "========== Compiling Project (Debug) =========="
