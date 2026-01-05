@@ -1,6 +1,6 @@
 #pragma once
 
-#include "renderCommand.h"
+#include "RenderCommand.h"
 
 #include "OrthographicCamera.h"
 #include "Shader.h"

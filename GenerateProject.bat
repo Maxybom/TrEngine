@@ -1,7 +1,7 @@
 @echo off
 echo Clean start
 
-REM Cancella file specifici
+REM Delete specific files
 del /Q /F "Sandbox\Sandbox.vcxproj"
 del /Q /F "Sandbox\Sandbox.vcxproj.user"
 del /Q /F "TrEngine\TrEngine.vcxproj"

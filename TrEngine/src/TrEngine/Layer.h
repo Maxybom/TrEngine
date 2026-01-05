@@ -1,6 +1,6 @@
 #pragma once
 #include "TrEngine/Core.h"
-#include "TrEngine/event/Event.h"
+#include "TrEngine/Event/Event.h"
 
 namespace TrEngine
 {

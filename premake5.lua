@@ -1,6 +1,7 @@
 workspace "TrEngine"
     architecture "x64"
     startproject "Sandbox"
+
     configurations
     {
         "Debug",
@@ -10,9 +11,10 @@ workspace "TrEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include Directories --
 IncludeDir = {}
 IncludeDir["GLFW"] = "TrEngine/vendor/GLFW/include"
-IncludeDir["Glad"] = "TrEngine/vendor/glad/include"
+IncludeDir["Glad"] = "TrEngine/vendor/Glad/include"
 IncludeDir["ImGui"] = "TrEngine/vendor/Imgui"
 IncludeDir["glm"] = "TrEngine/vendor/glm"
 
@@ -20,10 +22,15 @@ include "TrEngine/vendor/GLFW"
 include "TrEngine/vendor/Glad"
 include "TrEngine/vendor/Imgui"
 
+-- ==========================================
+-- PROJECT: TrEngine
+-- ==========================================
 project "TrEngine"
     location "TrEngine"
     kind "SharedLib"
     language "C++"
+    cppdialect "C++17"
+    staticruntime "Off"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -35,7 +42,6 @@ project "TrEngine"
     {
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp",
-
         "%{prj.name}/src/TrEngine/Platform/OpenGL/ImGuiOpenGLRenderer.h",
         "%{prj.name}/src/TrEngine/Platform/OpenGL/ImGuiOpenGLRenderer.cpp",
         "%{prj.name}/vendor/Imgui/backends/imgui_impl_glfw.h",
@@ -60,13 +66,10 @@ project "TrEngine"
         "GLFW",
         "Glad",
         "ImGui",
-        "Imgui",
-        "opengl32.lib",
     }
 
+    -- WINDOWS --
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "Off"
         systemversion "latest"
 
         defines
@@ -75,36 +78,74 @@ project "TrEngine"
             "_WINDLL",
             "TE_PLATFORM_WINDOWS",
             "TE_BUILD_DLL",
-             "IMGUI_IMPL_OPENGL_LOADER_CUSTOM",
+            "IMGUI_IMPL_OPENGL_LOADER_CUSTOM",
             "_GLFW_WIN32",
             "GLFW_EXPOSE_NATIVE_WIN32",
             "GLFW_INCLUDE_NONE",
         }
 
-    postbuildcommands
-    {
-        ("IF NOT EXIST ..\\bin\\" .. outputdir .. "\\Sandbox\\TrEngine.dll (xcopy /Q /Y /I ..\\bin\\" .. outputdir .. "\\TrEngine\\TrEngine.dll ..\\bin\\" .. outputdir .. "\\Sandbox\\ > nul)")
-    }
+        links
+        {
+            "opengl32.lib" 
+        }
+        -- Post Build Commands Windows
+        postbuildcommands
+        {
+            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox/")
+        }
+
+    -- LINUX --
+    filter "system:linux"
+        systemversion "latest"
+
+        defines
+        {
+            "TE_PLATFORM_LINUX",
+            "IMGUI_IMPL_OPENGL_LOADER_CUSTOM",
+            "GLFW_INCLUDE_NONE",
+            "_GLFW_X11"
+        }
+
+        links
+        {
+            "GL",
+            "X11",
+            "Xi",
+            "Xrandr",
+            "Xinerama",
+            "Xcursor",
+            "pthread",
+            "dl"
+        }
 
     filter "configurations:Debug"
         defines "TE_DEBUG"
-        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "TE_RELEASE"
-        buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Dist"
         defines "TE_DIST"
-        buildoptions "/MD"
         optimize "On"
+    
+    filter { "system:windows", "configurations:Debug" }
+        buildoptions "/MDd"
+    filter { "system:windows", "configurations:Release or Dist" }
+        buildoptions "/MD"
 
+
+-- ==========================================
+-- PROJECT: Sandbox
+-- ==========================================
 project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
     language "C++"
+    cppdialect "C++17"
+    staticruntime "Off"
+
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
@@ -131,9 +172,8 @@ project "Sandbox"
         "TrEngine",
     }
 
+    -- WINDOWS --
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "Off"
         systemversion "latest"
 
         defines
@@ -143,26 +183,35 @@ project "Sandbox"
             "TE_PLATFORM_WINDOWS",
             "IMGUI_IMPL_OPENGL_LOADER_CUSTOM",
             "_GLFW_WIN32",
-             "GLFW_EXPOSE_NATIVE_WIN32",
-             "GLFW_INCLUDE_NONE",
+            "GLFW_EXPOSE_NATIVE_WIN32",
+            "GLFW_INCLUDE_NONE",
         }
 
-    postbuildcommands
-    {
-        ("IF NOT EXIST ..\\bin\\" .. outputdir .. "\\Sandbox\\Sandbox.exe (xcopy /Q /Y /I ..\\bin\\" .. outputdir .. "\\Sandbox\\Sandbox.exe ..\\bin\\" .. outputdir .. "\\Sandbox\\ > nul)")
-    }
+    -- LINUX --
+    filter "system:linux"
+        systemversion "latest"
+
+        defines
+        {
+            "TE_PLATFORM_LINUX",
+            "IMGUI_IMPL_OPENGL_LOADER_CUSTOM",
+            "GLFW_INCLUDE_NONE",
+            "_GLFW_X11"
+        }
 
     filter "configurations:Debug"
         defines "TE_DEBUG"
-        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "TE_RELEASE"
-        buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Dist"
         defines "TE_DIST"
-        buildoptions "/MD"
         optimize "On"
+
+    filter { "system:windows", "configurations:Debug" }
+        buildoptions "/MDd"
+    filter { "system:windows", "configurations:Release or Dist" }
+        buildoptions "/MD"

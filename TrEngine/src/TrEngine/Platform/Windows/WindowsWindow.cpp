@@ -3,9 +3,9 @@
 #include "WindowsWindow.h"
 #include "TrEngine/Log.h"
 
-#include "TrEngine/event/KeyEvent.h"
-#include "TrEngine/event/MouseEvent.h"
-#include "TrEngine/event/ApplicationEvent.h"
+#include "TrEngine/Event/KeyEvent.h"
+#include "TrEngine/Event/MouseEvent.h"
+#include "TrEngine/Event/ApplicationEvent.h"
 
 #include "TrEngine/Platform/OpenGL/OpenGLContext.h"
 
@@ -13,17 +13,17 @@ namespace TrEngine
 {
 	static bool s_GLFWInitialized = false;
 
-	static void GLFWErroCallback(int error, const char* description)
+	static void GLFWErroCallback(int error, const char *description)
 	{
 		TE_CORE_ERROR("GLFW error ({0}): {1}", error, description);
 	}
 
-	Window* Window::Create(const WindowProps& props)
+	Window *Window::Create(const WindowProps &props)
 	{
 		return new WindowsWindow(props);
 	}
 
-	WindowsWindow::WindowsWindow(const WindowProps& props)
+	WindowsWindow::WindowsWindow(const WindowProps &props)
 	{
 		Init(props);
 	}
@@ -33,7 +33,7 @@ namespace TrEngine
 		Shutdown();
 	}
 
-	void WindowsWindow::Init(const WindowProps& props)
+	void WindowsWindow::Init(const WindowProps &props)
 	{
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
@@ -50,7 +50,7 @@ namespace TrEngine
 			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow((int) props.Width, (int) props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 
 		m_Context = new OpenGLContext(m_Window);
 		m_Context->Init();
@@ -59,25 +59,23 @@ namespace TrEngine
 		SetVSync(true);
 
 		// Set GLFW Callbacks
-		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
-			{
+		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow *window, int width, int height)
+								  {
 				WindowData& data = *(WindowData*) glfwGetWindowUserPointer(window);
 				data.Width = width;
 				data.Height = height;
 
 				WindowResizeEvent event(width, height);
-				data.EventCallback(event);
-			});
+				data.EventCallback(event); });
 
-		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
-			{
+		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow *window)
+								   {
 				WindowData& data = *(WindowData*) glfwGetWindowUserPointer(window);
 				WindowCloseEvent event;
-				data.EventCallback(event);
-			});
+				data.EventCallback(event); });
 
-		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scanCode, int action, int mods)
-			{
+		glfwSetKeyCallback(m_Window, [](GLFWwindow *window, int key, int scanCode, int action, int mods)
+						   {
 				WindowData& data = *(WindowData*) glfwGetWindowUserPointer(window);
 
 				switch (action)
@@ -100,18 +98,16 @@ namespace TrEngine
 						data.EventCallback(event);
 						break;
 					}
-				}
-			});
+				} });
 
-		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keyCode)
-			{
+		glfwSetCharCallback(m_Window, [](GLFWwindow *window, unsigned int keyCode)
+							{
 				WindowData& data = *(WindowData*) glfwGetWindowUserPointer(window);
 				KeyTypedEvent event(keyCode);
-				data.EventCallback(event);
-			});
+				data.EventCallback(event); });
 
-		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
-			{
+		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow *window, int button, int action, int mods)
+								   {
 				WindowData& data = *(WindowData*) glfwGetWindowUserPointer(window);
 
 				switch (action)
@@ -128,22 +124,19 @@ namespace TrEngine
 						data.EventCallback(event);
 						break;
 					}
-				}
-			});
+				} });
 
-		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset)
-			{
+		glfwSetScrollCallback(m_Window, [](GLFWwindow *window, double xOffset, double yOffset)
+							  {
 				WindowData& data = *(WindowData*) glfwGetWindowUserPointer(window);
 				MouseScrolledEvent event((float) xOffset, (float) yOffset);
-				data.EventCallback(event);
-			});
+				data.EventCallback(event); });
 
-		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xPos, double yPos)
-			{
+		glfwSetCursorPosCallback(m_Window, [](GLFWwindow *window, double xPos, double yPos)
+								 {
 				WindowData& data = *(WindowData*) glfwGetWindowUserPointer(window);
 				MouseMovedEvent event((float) xPos, (float) yPos);
-				data.EventCallback(event);
-			});
+				data.EventCallback(event); });
 	}
 
 	void WindowsWindow::Shutdown()
@@ -155,7 +148,6 @@ namespace TrEngine
 	{
 		glfwPollEvents();
 		m_Context->SwapBuffers();
-		//m_Context.GetSwapChain().Flus();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

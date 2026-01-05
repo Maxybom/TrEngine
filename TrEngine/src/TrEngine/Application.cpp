@@ -7,7 +7,7 @@
 #include "Input.h"
 
 #include "imgui.h"
-#include "Trengine/Renderer/Renderer.h"
+#include "TrEngine/Renderer/Renderer.h"
 
 namespace TrEngine
 {
@@ -26,7 +26,7 @@ namespace TrEngine
 		Renderer::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();
-		PushOverlay(m_ImGuiLayer); 
+		PushOverlay(m_ImGuiLayer);
 	}
 
 	Application::~Application() = default;
