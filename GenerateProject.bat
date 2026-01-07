@@ -1,18 +1,20 @@
 @echo off
-echo Clean start
+echo === CLEAN START ===
 
-REM Delete specific files
-del /Q /F "Sandbox\Sandbox.vcxproj"
-del /Q /F "Sandbox\Sandbox.vcxproj.user"
-del /Q /F "TrEngine\TrEngine.vcxproj"
-del /Q /F "TrEngine\TrEngine.vcxproj.user"
-del /Q /F "TrEngine\TrEngine.vcxproj.filters"
+del /Q *.sln
 
-rmdir /S /Q "bin"
-rmdir /S /Q "bin-int"
+if exist "bin" rmdir /S /Q "bin"
+if exist "bin-int" rmdir /S /Q "bin-int"
 
-echo Clean complete
-echo premake execution
+if exist ".vs" rmdir /S /Q ".vs"
+
+echo Deleting project files...
+del /S /Q *.vcxproj
+del /S /Q *.vcxproj.user
+del /S /Q *.vcxproj.filters
+
+echo === CLEAN COMPLETE ===
+echo === PREMAKE EXECUTION ===
 
 call vendor\bin\premake\Windows\premake5.exe vs2022
 
