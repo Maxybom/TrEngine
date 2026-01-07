@@ -1,12 +1,22 @@
 # TrEngine
-Personal game engine project for personal purpose
+Personal game engine project.
 
-DISCLAIMER!:
-FOR WINDOWS ONLY!(for now).
-vs 2022 is recommended but work with not full compatibility with vs 2017 & 2019
-Actually is just a initial prototype.
+DISCLAIMER! :
+
+Supported platform :
+- Windows
+- Linux
+
+Tested :
+- Windows 10/11
+- Ubuntu 24.04
+
+Reccomanded :
+- Visual studio 2022
+- Visual studio code(or similar)
 
 Instruction:
-1)Clone repository
-2)Start the batch script "GenerateProject"
-3)Actually tested on windows with visual studio community 2022 and visual studio code
+- Clone repository with submodules
+- Start the script "GenerateProject"
+- Build
+- Execute
