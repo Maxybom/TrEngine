@@ -8,11 +8,11 @@ struct GLFWwindow;
 
 namespace TrEngine
 {
-	class WindowsWindow : public Window
+	class GlfwWindow : public Window
 	{
 	public:
-		explicit WindowsWindow(const WindowProps& props);
-		~WindowsWindow() override;
+		explicit GlfwWindow(const WindowProps& props);
+		~GlfwWindow() override;
 
 		void OnUpdate() override;
 

@@ -5,7 +5,7 @@
 
 namespace TrEngine
 {
-	class WindowsInput : public Input
+	class GlfwInput : public Input
 	{
 	protected:
 		virtual bool IsKeyPressedImpl(int keycode) override;

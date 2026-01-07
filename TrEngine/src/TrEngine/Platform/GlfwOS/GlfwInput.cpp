@@ -8,11 +8,11 @@
 
 namespace TrEngine
 {
-	class WindowsInput : public Input
+	class GlfwInput : public Input
 	{
 	public:
-		WindowsInput() = default;
-		~WindowsInput() = default;
+		GlfwInput() = default;
+		~GlfwInput() = default;
 
 	protected:
 		virtual bool IsKeyPressedImpl(int keycode) override
@@ -61,5 +61,5 @@ namespace TrEngine
 	};
 
 	// static var initialization
-	Input* Input::s_Instance = new WindowsInput();
+	Input* Input::s_Instance = new GlfwInput();
 }
