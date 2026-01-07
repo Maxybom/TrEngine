@@ -1,5 +1,6 @@
 #pragma once
 #include "TrEngine/Core.h"
+#include "TrEngine/Core/Timestep.h"
 #include "TrEngine/Event/Event.h"
 
 namespace TrEngine
@@ -12,7 +13,7 @@ namespace TrEngine
 
         virtual void OnAttach() {}
         virtual void OnDetach() {}
-        virtual void OnUpdate() {}
+        virtual void OnUpdate(Timestep timestep) {}
 
         virtual void OnImGuiRender() {}
 

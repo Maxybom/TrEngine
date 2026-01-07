@@ -21,7 +21,7 @@ namespace TrEngine
 
         virtual void OnEvent(Event &e) override;
 
-        virtual void OnUpdate() override {}
+        virtual void OnUpdate(Timestep timestep) override {}
 
         virtual void OnImGuiRender() override;
 

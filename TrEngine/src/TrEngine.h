@@ -11,6 +11,8 @@
 #include "TrEngine/Layer.h"
 #include "TrEngine/ImGui/ImGuiLayer.h"
 
+#include "TrEngine/Core/Timestep.h"
+
 //------------------ Render -------------------
 #include "TrEngine/Renderer/Renderer.h"
 #include "TrEngine/Renderer/RenderCommand.h"

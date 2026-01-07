@@ -35,10 +35,10 @@ public:
 
 		std::array<float, 3 * 4> squareVertices =
 			{
-				-0.5f, -0.5f, 0.0f,
-				0.5f, -0.5f, 0.0f,
-				0.5f, 0.5f, 0.0f,
-				-0.5f, 0.5f, 0.0f};
+				-0.5f, -0.5f, -0.1f,
+				0.5f, -0.5f, -0.1f,
+				0.5f, 0.5f, -0.1f,
+				-0.5f, 0.5f, -0.1f};
 
 		std::shared_ptr<TrEngine::VertexBuffer> SquareVB(TrEngine::VertexBuffer::Create(squareVertices.data(), sizeof(squareVertices)), [](TrEngine::VertexBuffer *ptr)
 														 { delete ptr; });
@@ -122,23 +122,25 @@ public:
 		m_Shader2.reset(new TrEngine::Shader(vertexSource2, fragmentSource2));
 	}
 
-	void OnUpdate() override
+	void OnUpdate(TrEngine::Timestep timestep) override
 	{
 
+		TE_TRACE("Timestep: {0} seconds ({1} ms)", timestep.GetSeconds(), timestep.GetMilliseconds());
+
 		if (TrEngine::Input::IsKeyPressed(TE_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraSpeed;
+			m_CameraPosition.x -= m_CameraSpeed * timestep;
 		else if (TrEngine::Input::IsKeyPressed(TE_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraSpeed;
+			m_CameraPosition.x += m_CameraSpeed * timestep;
 
 		if (TrEngine::Input::IsKeyPressed(TE_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraSpeed;
+			m_CameraPosition.y -= m_CameraSpeed * timestep;
 		else if (TrEngine::Input::IsKeyPressed(TE_KEY_UP))
-			m_CameraPosition.y += m_CameraSpeed;
+			m_CameraPosition.y += m_CameraSpeed * timestep;
 
 		if (TrEngine::Input::IsKeyPressed(TE_KEY_Q))
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * timestep;
 		else if (TrEngine::Input::IsKeyPressed(TE_KEY_E))
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * timestep;
 
 		TrEngine::Window &window = TrEngine::Application::Get().GetWindow();
 
@@ -172,10 +174,10 @@ private:
 
 	TrEngine::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
-	float m_CameraSpeed = 0.1f;
+	float m_CameraSpeed = 1.0f; // Units per second
 
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 1.0f;
+	float m_CameraRotationSpeed = 90.0f; // Degrees per second
 };
 
 class Sandbox : public TrEngine::Application

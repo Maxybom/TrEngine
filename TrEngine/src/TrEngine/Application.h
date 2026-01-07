@@ -4,7 +4,9 @@
 #include "TrEngine/LayerStack.h"
 #include "TrEngine/Event/ApplicationEvent.h"
 #include "Window.h"
+#include "TrEngine/Core/Timestep.h"
 #include "TrEngine/ImGui/ImGuiLayer.h"
+
 namespace TrEngine
 {
 	class TE_API Application
@@ -31,6 +33,8 @@ namespace TrEngine
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 		ImGuiLayer *m_ImGuiLayer;
+		Timestep m_Timestep;
+		Timestep m_LastFrameTime = 0.0f;
 
 		static Application *s_Instance;
 	};

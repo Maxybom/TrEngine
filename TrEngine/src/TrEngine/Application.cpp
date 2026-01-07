@@ -22,6 +22,7 @@ namespace TrEngine
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Window->SetVSync(false);
 
 		Renderer::Init();
 
@@ -68,8 +69,12 @@ namespace TrEngine
 		{
 			RenderCommand::SetViewport(0, 0, m_Window->GetWidth(), m_Window->GetHeight());
 
+			float time = (float)glfwGetTime();
+			Timestep timestep = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+
 			for (Layer *layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(timestep);
 
 			m_ImGuiLayer->Begin();
 
