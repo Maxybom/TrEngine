@@ -1,0 +1,46 @@
+name: TrEngine CI
+
+on:
+  push:
+    branches: [ "main", "testing" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Install Dependencies (Linux only)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake xorg-dev libglu1-mesa-dev xvfb libgl1-mesa-dri
+
+    - name: Configure CMake
+      run: cmake -B build -S .
+
+    - name: Build TrEngine
+      run: cmake --build build --config Release
+
+    - name: Run Engine Test (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        export TRENGINE_CI=1
+        xvfb-run -a -s "-screen 0 1280x720x24" ./build/Sandbox
+
+    - name: Run Engine Test (Windows)
+      if: matrix.os == 'windows-latest'
+      shell: pwsh
+      run: |
+        $env:TRENGINE_CI="1"
+        .\build\Release\Sandbox.exe

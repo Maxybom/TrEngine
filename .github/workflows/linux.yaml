@@ -1,0 +1,34 @@
+name: TrEngine Linux CI
+
+on:
+  push:
+    branches: [ "main", "testing" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Install Linux Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake xorg-dev libglu1-mesa-dev xvfb libgl1-mesa-dri
+
+    - name: Configure CMake
+      run: cmake -B build -S .
+
+    - name: Build TrEngine
+      run: cmake --build build --config Release
+
+    - name: Run Engine Test (Virtual Display)
+      # virtual monitor
+      run: |
+        export TRENGINE_CI=1
+        xvfb-run -a -s "-screen 0 1280x720x24" ./build/Sandbox
