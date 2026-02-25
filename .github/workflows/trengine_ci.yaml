@@ -7,12 +7,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-and-test:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    
-    runs-on: ${{ matrix.os }}
+  build_linux:
+    name: Linux Build & Test
+    runs-on: ubuntu-latest
     
     steps:
     - name: Checkout Code
@@ -20,43 +17,45 @@ jobs:
       with:
         submodules: recursive
 
-    - name: Install Dependencies (Linux)
-      if: matrix.os == 'ubuntu-latest'
+    - name: Install Dependencies
       run: |
         sudo apt-get update
         sudo apt-get install -y build-essential xorg-dev libglu1-mesa-dev xvfb libgl1-mesa-dri
 
-    - name: Generate Projects (Linux)
-      if: matrix.os == 'ubuntu-latest'
+    - name: Generate Projects
       run: |
         chmod +x GenerateProjects.sh
         chmod +x vendor/bin/premake/Linux/premake5
         ./GenerateProjects.sh
 
-    - name: Build Engine (Linux)
-      if: matrix.os == 'ubuntu-latest'
+    - name: Build Engine
       run: make config=release
 
-    - name: Run Headless Test (Linux)
-      if: matrix.os == 'ubuntu-latest'
+    - name: Run Headless Test
       run: |
         export TRENGINE_CI=1
         xvfb-run -a -s "-screen 0 1280x720x24" ./bin/Release-linux-x86_64/Sandbox/Sandbox
 
-    - name: Add MSBuild to PATH (Windows)
-      if: matrix.os == 'windows-latest'
+  build_windows:
+    name: Windows Build & Test
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v2
 
-    - name: Generate Projects (Windows)
-      if: matrix.os == 'windows-latest'
+    - name: Generate Projects
       run: .\GenerateProject.bat
 
-    - name: Build Engine (Windows)
-      if: matrix.os == 'windows-latest'
+    - name: Build Engine
       run: msbuild TrEngine.sln /property:Configuration=Release
 
-    - name: Run Headless Test (Windows)
-      if: matrix.os == 'windows-latest'
+    - name: Run Headless Test
       run: |
         $env:TRENGINE_CI="1"
         .\bin\Release-windows-x86_64\Sandbox\Sandbox.exe
