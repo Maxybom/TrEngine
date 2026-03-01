@@ -31,6 +31,10 @@ jobs:
     - name: Build Engine
       run: make config=release
 
+    - name: Debug Directory Structure
+      if: always()
+      run: find bin/
+
     - name: Run Headless Test
       run: |
         export TRENGINE_CI=1
@@ -57,7 +61,7 @@ jobs:
 
     - name: Debug Directory Structure
       if: always()
-      run: dir .\bin /s
+      run: Get-ChildItem -Path bin -Recurse
 
     - name: Run Headless Test
       run: |
