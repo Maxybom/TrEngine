@@ -1,0 +1,76 @@
+name: TrEngine CI
+
+on:
+  push:
+    branches: [ "main", "testing" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build_linux:
+    name: Linux Build & Test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential xorg-dev libglu1-mesa-dev xvfb libgl1-mesa-dri
+
+    - name: Generate Projects
+      run: |
+        chmod +x GenerateProjects.sh
+        chmod +x vendor/bin/premake/Linux/premake5
+        ./GenerateProjects.sh
+
+    - name: Build Engine
+      run: make config=release
+
+    - name: Debug Directory Structure
+      if: always()
+      run: find bin/
+
+    - name: Run Headless Test
+      run: |
+        export TRENGINE_CI=1
+        xvfb-run -a -s "-screen 0 1280x720x24" ./bin/Release-linux-x86_64/Sandbox
+
+  build_windows:
+    name: Windows Build & Test
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Generate Projects
+      run: .\GenerateProject.bat
+
+    - name: Build Engine
+      run: msbuild TrEngine.sln /property:Configuration=Release /property:Platform=x64
+
+    - name: Debug Directory Structure
+      if: always()
+      run: Get-ChildItem -Path bin -Recurse
+
+    - name: Setup Mesa3D (Software OpenGL)
+      run: |
+        Invoke-WebRequest -Uri "https://github.com/pal1000/mesa-dist-win/releases/download/23.1.9/mesa3d-23.1.9-release-msvc.7z" -OutFile mesa.7z
+        7z e mesa.7z x64/* "-o.\bin\Release-windows-x86_64"
+
+    - name: Run Headless Test
+      run: |
+        $env:TRENGINE_CI="1"
+        $env:MESA_GL_VERSION_OVERRIDE="4.6"
+        $env:MESA_GLSL_VERSION_OVERRIDE="460"
+        .\bin\Release-windows-x86_64\Sandbox.exe

@@ -63,32 +63,46 @@ namespace TrEngine
 		}
 	}
 
-	void Application::Run()
-	{
-		while (m_Running)
-		{
-			RenderCommand::SetViewport(0, 0, m_Window->GetWidth(), m_Window->GetHeight());
+void Application::Run()
+{
+    bool is_ci_test = std::getenv("TRENGINE_CI") != nullptr;
+    int frame_count = 0;
 
-			float time = (float)glfwGetTime();
-			Timestep timestep = time - m_LastFrameTime;
-			m_LastFrameTime = time;
+    while (m_Running)
+    {
+        RenderCommand::SetViewport(0, 0, m_Window->GetWidth(), m_Window->GetHeight());
 
-			for (Layer *layer : m_LayerStack)
-				layer->OnUpdate(timestep);
+        float time = (float)glfwGetTime();
+        Timestep timestep = time - m_LastFrameTime;
+        m_LastFrameTime = time;
 
-			m_ImGuiLayer->Begin();
+        for (Layer *layer : m_LayerStack)
+            layer->OnUpdate(timestep);
 
-			for (Layer *layer : m_LayerStack)
-				layer->OnImGuiRender();
+        m_ImGuiLayer->Begin();
 
-			m_ImGuiLayer->End();
+        for (Layer *layer : m_LayerStack)
+            layer->OnImGuiRender();
 
-			m_Window->OnUpdate();
-		}
-	}
-	bool Application::OnWindowClose(WindowCloseEvent &e)
-	{
-		m_Running = false;
-		return true;
-	}
+        m_ImGuiLayer->End();
+
+        m_Window->OnUpdate();
+
+        if (is_ci_test)
+        {
+            frame_count++;
+            if (frame_count >= 50)
+            {
+                TE_CORE_WARN("CI Testing: 50 frames generated. success.");
+                m_Running = false;
+            }
+        }
+    }
+}
+
+    bool Application::OnWindowClose(WindowCloseEvent &e)
+    {
+        m_Running = false;
+        return true;
+    }
 }
