@@ -71,4 +71,6 @@ jobs:
     - name: Run Headless Test
       run: |
         $env:TRENGINE_CI="1"
+        $env:MESA_GL_VERSION_OVERRIDE="4.6"
+        $env:MESA_GLSL_VERSION_OVERRIDE="460"
         .\bin\Release-windows-x86_64\Sandbox.exe
