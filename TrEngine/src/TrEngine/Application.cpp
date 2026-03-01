@@ -93,7 +93,7 @@ void Application::Run()
             frame_count++;
             if (frame_count >= 50)
             {
-                TE_CORE_WARN("CI Testing: 50 frame renderizzati con successo. Spegnimento.");
+                TE_CORE_WARN("CI Testing: 50 frames generated. success.");
                 m_Running = false;
             }
         }
