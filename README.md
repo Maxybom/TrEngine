@@ -1,7 +1,5 @@
 # TrEngine
 
-[![TrEngine CI](https://github.com/IL_TUO_USER/TrEngine/actions/workflows/ci.yml/badge.svg)](https://github.com/IL_TUO_USER/TrEngine/actions/workflows/ci.yml)
-
 Personal game engine (will be oriented towards both 2D and 3D), developed in my spare time for future use. The project is currently under development (WIP).
 
 ## Tech Stack
