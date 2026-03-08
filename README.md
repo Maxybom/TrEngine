@@ -16,6 +16,13 @@ Personal game engine (will be oriented towards both 2D and 3D), developed in my 
 
 ## Quick Start
 
+### 0. Prerequisites
+* **Windows:** C++ workload, generator (Visual Studio or similar).
+* **Linux (Ubuntu/Debian):** Build essentials and required windowing packages:
+  ```bash
+  sudo apt update
+  sudo apt install build-essential xorg-dev libglu1-mesa-dev
+
 ### 1. Clone the repository
 Clone with submodules to fetch all required dependencies (GLFW, ImGui, Glad, spdlog, etc.):
 
