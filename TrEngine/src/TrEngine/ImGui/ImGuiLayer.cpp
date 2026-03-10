@@ -78,11 +78,9 @@ namespace TrEngine
         ImGui::NewFrame();
     }
 
-    void ImGuiLayer::OnImGuiRender()
+ void ImGuiLayer::OnImGuiRender()
     {
         SetupDockSpace();
-        static bool show = true;
-        ImGui::ShowDemoWindow(&show);
 
         for (auto it = m_Windows.begin(); it != m_Windows.end();)
         {
