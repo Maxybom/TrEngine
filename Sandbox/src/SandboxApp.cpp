@@ -181,7 +181,7 @@ public:
 			}
 		}
 
-		TrEngine::Renderer::Submit(m_Shader, m_VertexArray); // triangle
+		//TrEngine::Renderer::Submit(m_Shader, m_VertexArray); // triangle
 
 		TrEngine::Renderer::EndScene();
 	}
