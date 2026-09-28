@@ -1,0 +1,20 @@
+[
+  {
+    "label": "Build TrEngine (Linux)",
+    "command": "./Build.sh",
+    "reveal": "always",
+    "use_new_terminal": false
+  },
+  {
+    "label": "Build TrEngine (Windows)",
+    "command": ".\\Build.bat",
+    "args": [
+      "TrEngine.sln",
+      "/p:Configuration=Debug",
+      "/p:Platform=x64",
+      "/t:Build"
+    ],
+    "reveal": "always",
+    "use_new_terminal": false
+  }
+]
