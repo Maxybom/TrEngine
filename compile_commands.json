@@ -183,27 +183,6 @@
     "output": "bin-int/Debug-linux-x86_64/GLFW/egl_context.o"
   },
   {
-    "file": "src/glx_context.c",
-    "arguments": [
-      "/usr/bin/gcc",
-      "-MD",
-      "-MP",
-      "-D_GLFW_X11",
-      "-m64",
-      "-fPIC",
-      "-g",
-      "-w",
-      "-o",
-      "bin-int/Debug-linux-x86_64/GLFW/glx_context.o",
-      "-MF",
-      "bin-int/Debug-linux-x86_64/GLFW/glx_context.d",
-      "-c",
-      "src/glx_context.c"
-    ],
-    "directory": "/media/Extra/Documenti/TrEngine/TrEngine/vendor/GLFW",
-    "output": "bin-int/Debug-linux-x86_64/GLFW/glx_context.o"
-  },
-  {
     "file": "src/init.c",
     "arguments": [
       "/usr/bin/gcc",
@@ -223,6 +202,27 @@
     ],
     "directory": "/media/Extra/Documenti/TrEngine/TrEngine/vendor/GLFW",
     "output": "bin-int/Debug-linux-x86_64/GLFW/init.o"
+  },
+  {
+    "file": "src/glx_context.c",
+    "arguments": [
+      "/usr/bin/gcc",
+      "-MD",
+      "-MP",
+      "-D_GLFW_X11",
+      "-m64",
+      "-fPIC",
+      "-g",
+      "-w",
+      "-o",
+      "bin-int/Debug-linux-x86_64/GLFW/glx_context.o",
+      "-MF",
+      "bin-int/Debug-linux-x86_64/GLFW/glx_context.d",
+      "-c",
+      "src/glx_context.c"
+    ],
+    "directory": "/media/Extra/Documenti/TrEngine/TrEngine/vendor/GLFW",
+    "output": "bin-int/Debug-linux-x86_64/GLFW/glx_context.o"
   },
   {
     "file": "src/input.c",
@@ -372,27 +372,6 @@
     "output": "bin-int/Debug-linux-x86_64/GLFW/null_window.o"
   },
   {
-    "file": "src/osmesa_context.c",
-    "arguments": [
-      "/usr/bin/gcc",
-      "-MD",
-      "-MP",
-      "-D_GLFW_X11",
-      "-m64",
-      "-fPIC",
-      "-g",
-      "-w",
-      "-o",
-      "bin-int/Debug-linux-x86_64/GLFW/osmesa_context.o",
-      "-MF",
-      "bin-int/Debug-linux-x86_64/GLFW/osmesa_context.d",
-      "-c",
-      "src/osmesa_context.c"
-    ],
-    "directory": "/media/Extra/Documenti/TrEngine/TrEngine/vendor/GLFW",
-    "output": "bin-int/Debug-linux-x86_64/GLFW/osmesa_context.o"
-  },
-  {
     "file": "src/platform.c",
     "arguments": [
       "/usr/bin/gcc",
@@ -412,6 +391,27 @@
     ],
     "directory": "/media/Extra/Documenti/TrEngine/TrEngine/vendor/GLFW",
     "output": "bin-int/Debug-linux-x86_64/GLFW/platform.o"
+  },
+  {
+    "file": "src/osmesa_context.c",
+    "arguments": [
+      "/usr/bin/gcc",
+      "-MD",
+      "-MP",
+      "-D_GLFW_X11",
+      "-m64",
+      "-fPIC",
+      "-g",
+      "-w",
+      "-o",
+      "bin-int/Debug-linux-x86_64/GLFW/osmesa_context.o",
+      "-MF",
+      "bin-int/Debug-linux-x86_64/GLFW/osmesa_context.d",
+      "-c",
+      "src/osmesa_context.c"
+    ],
+    "directory": "/media/Extra/Documenti/TrEngine/TrEngine/vendor/GLFW",
+    "output": "bin-int/Debug-linux-x86_64/GLFW/osmesa_context.o"
   },
   {
     "file": "src/posix_module.c",
@@ -540,27 +540,6 @@
     "output": "bin-int/Debug-linux-x86_64/GLFW/x11_init.o"
   },
   {
-    "file": "src/x11_monitor.c",
-    "arguments": [
-      "/usr/bin/gcc",
-      "-MD",
-      "-MP",
-      "-D_GLFW_X11",
-      "-m64",
-      "-fPIC",
-      "-g",
-      "-w",
-      "-o",
-      "bin-int/Debug-linux-x86_64/GLFW/x11_monitor.o",
-      "-MF",
-      "bin-int/Debug-linux-x86_64/GLFW/x11_monitor.d",
-      "-c",
-      "src/x11_monitor.c"
-    ],
-    "directory": "/media/Extra/Documenti/TrEngine/TrEngine/vendor/GLFW",
-    "output": "bin-int/Debug-linux-x86_64/GLFW/x11_monitor.o"
-  },
-  {
     "file": "src/x11_window.c",
     "arguments": [
       "/usr/bin/gcc",
@@ -580,6 +559,27 @@
     ],
     "directory": "/media/Extra/Documenti/TrEngine/TrEngine/vendor/GLFW",
     "output": "bin-int/Debug-linux-x86_64/GLFW/x11_window.o"
+  },
+  {
+    "file": "src/x11_monitor.c",
+    "arguments": [
+      "/usr/bin/gcc",
+      "-MD",
+      "-MP",
+      "-D_GLFW_X11",
+      "-m64",
+      "-fPIC",
+      "-g",
+      "-w",
+      "-o",
+      "bin-int/Debug-linux-x86_64/GLFW/x11_monitor.o",
+      "-MF",
+      "bin-int/Debug-linux-x86_64/GLFW/x11_monitor.d",
+      "-c",
+      "src/x11_monitor.c"
+    ],
+    "directory": "/media/Extra/Documenti/TrEngine/TrEngine/vendor/GLFW",
+    "output": "bin-int/Debug-linux-x86_64/GLFW/x11_monitor.o"
   },
   {
     "file": "src/xkb_unicode.c",
@@ -739,40 +739,6 @@
     "output": "../bin-int/Debug-linux-x86_64/TrEngine/Buffer.o"
   },
   {
-    "file": "src/TrEngine/Platform/GlfwOS/GlfwInput.cpp",
-    "arguments": [
-      "/usr/bin/g++",
-      "-include",
-      "../bin-int/Debug-linux-x86_64/TrEngine/Tepch.h",
-      "-MD",
-      "-MP",
-      "-DTE_PLATFORM_LINUX",
-      "-DTE_DYNAMIC_LINK",
-      "-DIMGUI_IMPL_OPENGL_LOADER_CUSTOM",
-      "-DGLFW_INCLUDE_NONE",
-      "-D_GLFW_X11",
-      "-Isrc",
-      "-Ivendor/spdlog/include",
-      "-Ivendor/GLFW/src",
-      "-Ivendor/Imgui/backends",
-      "-Ivendor/GLFW/include",
-      "-Ivendor/Glad/include",
-      "-Ivendor/Imgui",
-      "-Ivendor/glm",
-      "-m64",
-      "-fPIC",
-      "-std=c++17",
-      "-o",
-      "../bin-int/Debug-linux-x86_64/TrEngine/GlfwInput.o",
-      "-MF",
-      "../bin-int/Debug-linux-x86_64/TrEngine/GlfwInput.d",
-      "-c",
-      "src/TrEngine/Platform/GlfwOS/GlfwInput.cpp"
-    ],
-    "directory": "/media/Extra/Documenti/TrEngine/TrEngine",
-    "output": "../bin-int/Debug-linux-x86_64/TrEngine/GlfwInput.o"
-  },
-  {
     "file": "src/TrEngine/Platform/GlfwOS/GlfwWindow.cpp",
     "arguments": [
       "/usr/bin/g++",
@@ -805,6 +771,40 @@
     ],
     "directory": "/media/Extra/Documenti/TrEngine/TrEngine",
     "output": "../bin-int/Debug-linux-x86_64/TrEngine/GlfwWindow.o"
+  },
+  {
+    "file": "src/TrEngine/Platform/GlfwOS/GlfwInput.cpp",
+    "arguments": [
+      "/usr/bin/g++",
+      "-include",
+      "../bin-int/Debug-linux-x86_64/TrEngine/Tepch.h",
+      "-MD",
+      "-MP",
+      "-DTE_PLATFORM_LINUX",
+      "-DTE_DYNAMIC_LINK",
+      "-DIMGUI_IMPL_OPENGL_LOADER_CUSTOM",
+      "-DGLFW_INCLUDE_NONE",
+      "-D_GLFW_X11",
+      "-Isrc",
+      "-Ivendor/spdlog/include",
+      "-Ivendor/GLFW/src",
+      "-Ivendor/Imgui/backends",
+      "-Ivendor/GLFW/include",
+      "-Ivendor/Glad/include",
+      "-Ivendor/Imgui",
+      "-Ivendor/glm",
+      "-m64",
+      "-fPIC",
+      "-std=c++17",
+      "-o",
+      "../bin-int/Debug-linux-x86_64/TrEngine/GlfwInput.o",
+      "-MF",
+      "../bin-int/Debug-linux-x86_64/TrEngine/GlfwInput.d",
+      "-c",
+      "src/TrEngine/Platform/GlfwOS/GlfwInput.cpp"
+    ],
+    "directory": "/media/Extra/Documenti/TrEngine/TrEngine",
+    "output": "../bin-int/Debug-linux-x86_64/TrEngine/GlfwInput.o"
   },
   {
     "file": "src/TrEngine/Event/ImGuiEventHandler.cpp",
@@ -875,40 +875,6 @@
     "output": "../bin-int/Debug-linux-x86_64/TrEngine/ImGuiLayer.o"
   },
   {
-    "file": "src/TrEngine/Platform/OpenGL/ImGuiOpenGLRenderer.cpp",
-    "arguments": [
-      "/usr/bin/g++",
-      "-include",
-      "../bin-int/Debug-linux-x86_64/TrEngine/Tepch.h",
-      "-MD",
-      "-MP",
-      "-DTE_PLATFORM_LINUX",
-      "-DTE_DYNAMIC_LINK",
-      "-DIMGUI_IMPL_OPENGL_LOADER_CUSTOM",
-      "-DGLFW_INCLUDE_NONE",
-      "-D_GLFW_X11",
-      "-Isrc",
-      "-Ivendor/spdlog/include",
-      "-Ivendor/GLFW/src",
-      "-Ivendor/Imgui/backends",
-      "-Ivendor/GLFW/include",
-      "-Ivendor/Glad/include",
-      "-Ivendor/Imgui",
-      "-Ivendor/glm",
-      "-m64",
-      "-fPIC",
-      "-std=c++17",
-      "-o",
-      "../bin-int/Debug-linux-x86_64/TrEngine/ImGuiOpenGLRenderer.o",
-      "-MF",
-      "../bin-int/Debug-linux-x86_64/TrEngine/ImGuiOpenGLRenderer.d",
-      "-c",
-      "src/TrEngine/Platform/OpenGL/ImGuiOpenGLRenderer.cpp"
-    ],
-    "directory": "/media/Extra/Documenti/TrEngine/TrEngine",
-    "output": "../bin-int/Debug-linux-x86_64/TrEngine/ImGuiOpenGLRenderer.o"
-  },
-  {
     "file": "src/TrEngine/Layer.cpp",
     "arguments": [
       "/usr/bin/g++",
@@ -941,6 +907,40 @@
     ],
     "directory": "/media/Extra/Documenti/TrEngine/TrEngine",
     "output": "../bin-int/Debug-linux-x86_64/TrEngine/Layer.o"
+  },
+  {
+    "file": "src/TrEngine/Platform/OpenGL/ImGuiOpenGLRenderer.cpp",
+    "arguments": [
+      "/usr/bin/g++",
+      "-include",
+      "../bin-int/Debug-linux-x86_64/TrEngine/Tepch.h",
+      "-MD",
+      "-MP",
+      "-DTE_PLATFORM_LINUX",
+      "-DTE_DYNAMIC_LINK",
+      "-DIMGUI_IMPL_OPENGL_LOADER_CUSTOM",
+      "-DGLFW_INCLUDE_NONE",
+      "-D_GLFW_X11",
+      "-Isrc",
+      "-Ivendor/spdlog/include",
+      "-Ivendor/GLFW/src",
+      "-Ivendor/Imgui/backends",
+      "-Ivendor/GLFW/include",
+      "-Ivendor/Glad/include",
+      "-Ivendor/Imgui",
+      "-Ivendor/glm",
+      "-m64",
+      "-fPIC",
+      "-std=c++17",
+      "-o",
+      "../bin-int/Debug-linux-x86_64/TrEngine/ImGuiOpenGLRenderer.o",
+      "-MF",
+      "../bin-int/Debug-linux-x86_64/TrEngine/ImGuiOpenGLRenderer.d",
+      "-c",
+      "src/TrEngine/Platform/OpenGL/ImGuiOpenGLRenderer.cpp"
+    ],
+    "directory": "/media/Extra/Documenti/TrEngine/TrEngine",
+    "output": "../bin-int/Debug-linux-x86_64/TrEngine/ImGuiOpenGLRenderer.o"
   },
   {
     "file": "src/TrEngine/LayerStack.cpp",
@@ -977,40 +977,6 @@
     "output": "../bin-int/Debug-linux-x86_64/TrEngine/LayerStack.o"
   },
   {
-    "file": "src/TrEngine/Log.cpp",
-    "arguments": [
-      "/usr/bin/g++",
-      "-include",
-      "../bin-int/Debug-linux-x86_64/TrEngine/Tepch.h",
-      "-MD",
-      "-MP",
-      "-DTE_PLATFORM_LINUX",
-      "-DTE_DYNAMIC_LINK",
-      "-DIMGUI_IMPL_OPENGL_LOADER_CUSTOM",
-      "-DGLFW_INCLUDE_NONE",
-      "-D_GLFW_X11",
-      "-Isrc",
-      "-Ivendor/spdlog/include",
-      "-Ivendor/GLFW/src",
-      "-Ivendor/Imgui/backends",
-      "-Ivendor/GLFW/include",
-      "-Ivendor/Glad/include",
-      "-Ivendor/Imgui",
-      "-Ivendor/glm",
-      "-m64",
-      "-fPIC",
-      "-std=c++17",
-      "-o",
-      "../bin-int/Debug-linux-x86_64/TrEngine/Log.o",
-      "-MF",
-      "../bin-int/Debug-linux-x86_64/TrEngine/Log.d",
-      "-c",
-      "src/TrEngine/Log.cpp"
-    ],
-    "directory": "/media/Extra/Documenti/TrEngine/TrEngine",
-    "output": "../bin-int/Debug-linux-x86_64/TrEngine/Log.o"
-  },
-  {
     "file": "src/TrEngine/Platform/OpenGL/OpenGLBuffer.cpp",
     "arguments": [
       "/usr/bin/g++",
@@ -1043,6 +1009,40 @@
     ],
     "directory": "/media/Extra/Documenti/TrEngine/TrEngine",
     "output": "../bin-int/Debug-linux-x86_64/TrEngine/OpenGLBuffer.o"
+  },
+  {
+    "file": "src/TrEngine/Log.cpp",
+    "arguments": [
+      "/usr/bin/g++",
+      "-include",
+      "../bin-int/Debug-linux-x86_64/TrEngine/Tepch.h",
+      "-MD",
+      "-MP",
+      "-DTE_PLATFORM_LINUX",
+      "-DTE_DYNAMIC_LINK",
+      "-DIMGUI_IMPL_OPENGL_LOADER_CUSTOM",
+      "-DGLFW_INCLUDE_NONE",
+      "-D_GLFW_X11",
+      "-Isrc",
+      "-Ivendor/spdlog/include",
+      "-Ivendor/GLFW/src",
+      "-Ivendor/Imgui/backends",
+      "-Ivendor/GLFW/include",
+      "-Ivendor/Glad/include",
+      "-Ivendor/Imgui",
+      "-Ivendor/glm",
+      "-m64",
+      "-fPIC",
+      "-std=c++17",
+      "-o",
+      "../bin-int/Debug-linux-x86_64/TrEngine/Log.o",
+      "-MF",
+      "../bin-int/Debug-linux-x86_64/TrEngine/Log.d",
+      "-c",
+      "src/TrEngine/Log.cpp"
+    ],
+    "directory": "/media/Extra/Documenti/TrEngine/TrEngine",
+    "output": "../bin-int/Debug-linux-x86_64/TrEngine/Log.o"
   },
   {
     "file": "src/TrEngine/Platform/OpenGL/OpenGLContext.cpp",
@@ -1111,6 +1111,40 @@
     ],
     "directory": "/media/Extra/Documenti/TrEngine/TrEngine",
     "output": "../bin-int/Debug-linux-x86_64/TrEngine/OpenGLRendererAPI.o"
+  },
+  {
+    "file": "src/TrEngine/Platform/OpenGL/OpenGLShader.cpp",
+    "arguments": [
+      "/usr/bin/g++",
+      "-include",
+      "../bin-int/Debug-linux-x86_64/TrEngine/Tepch.h",
+      "-MD",
+      "-MP",
+      "-DTE_PLATFORM_LINUX",
+      "-DTE_DYNAMIC_LINK",
+      "-DIMGUI_IMPL_OPENGL_LOADER_CUSTOM",
+      "-DGLFW_INCLUDE_NONE",
+      "-D_GLFW_X11",
+      "-Isrc",
+      "-Ivendor/spdlog/include",
+      "-Ivendor/GLFW/src",
+      "-Ivendor/Imgui/backends",
+      "-Ivendor/GLFW/include",
+      "-Ivendor/Glad/include",
+      "-Ivendor/Imgui",
+      "-Ivendor/glm",
+      "-m64",
+      "-fPIC",
+      "-std=c++17",
+      "-o",
+      "../bin-int/Debug-linux-x86_64/TrEngine/OpenGLShader.o",
+      "-MF",
+      "../bin-int/Debug-linux-x86_64/TrEngine/OpenGLShader.d",
+      "-c",
+      "src/TrEngine/Platform/OpenGL/OpenGLShader.cpp"
+    ],
+    "directory": "/media/Extra/Documenti/TrEngine/TrEngine",
+    "output": "../bin-int/Debug-linux-x86_64/TrEngine/OpenGLShader.o"
   },
   {
     "file": "src/TrEngine/Platform/OpenGL/OpenGLVertexArray.cpp",
