@@ -11,56 +11,55 @@
 
 namespace TrEngine
 {
-	static bool s_GLFWInitialized = false;
+static bool s_GLFWInitialized = false;
 
-	static void GLFWErroCallback(int error, const char *description)
-	{
-		TE_CORE_ERROR("GLFW error ({0}): {1}", error, description);
-	}
+static void GLFWErroCallback(int error, const char *description)
+{
+    TE_CORE_ERROR("GLFW error ({0}): {1}", error, description);
+}
 
-	Window *Window::Create(const WindowProps &props)
-	{
-		return new GlfwWindow(props);
-	}
+Window *Window::Create(const WindowProps &props)
+{
+    return new GlfwWindow(props);
+}
 
-	GlfwWindow::GlfwWindow(const WindowProps &props)
-	{
-		Init(props);
-	}
+GlfwWindow::GlfwWindow(const WindowProps &props)
+{
+    Init(props);
+}
 
-	GlfwWindow::~GlfwWindow()
-	{
-		Shutdown();
-	}
+GlfwWindow::~GlfwWindow()
+{
+    Shutdown();
+}
 
-	void GlfwWindow::Init(const WindowProps &props)
-	{
-		m_Data.Title = props.Title;
-		m_Data.Width = props.Width;
-		m_Data.Height = props.Height;
+void GlfwWindow::Init(const WindowProps &props)
+{
+    m_Data.Title = props.Title;
+    m_Data.Width = props.Width;
+    m_Data.Height = props.Height;
 
-		TE_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
+    TE_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
-		if (!s_GLFWInitialized)
-		{
-			// TODO: glfwTerminate on system shutdown
-			int success = glfwInit();
-			TE_CORE_ASSERT(success, "Could not initialize GLFW!");
-			glfwSetErrorCallback(GLFWErroCallback);
-			s_GLFWInitialized = true;
-		}
+    if (!s_GLFWInitialized)
+    {
+        // TODO: glfwTerminate on system shutdown
+        int success = glfwInit();
+        TE_CORE_ASSERT(success, "Could not initialize GLFW!");
+        glfwSetErrorCallback(GLFWErroCallback);
+        s_GLFWInitialized = true;
+    }
 
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+    m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 
-		m_Context = new OpenGLContext(m_Window);
-		m_Context->Init();
+    m_Context = new OpenGLContext(m_Window);
+    m_Context->Init();
 
-		glfwSetWindowUserPointer(m_Window, &m_Data);
-		SetVSync(true);
+    glfwSetWindowUserPointer(m_Window, &m_Data);
+    SetVSync(true);
 
-		// Set GLFW Callbacks
-		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow *window, int width, int height)
-								  {
+    // Set GLFW Callbacks
+    glfwSetWindowSizeCallback(m_Window, [](GLFWwindow *window, int width, int height) {
 				WindowData& data = *(WindowData*) glfwGetWindowUserPointer(window);
 				data.Width = width;
 				data.Height = height;
@@ -68,14 +67,12 @@ namespace TrEngine
 				WindowResizeEvent event(width, height);
 				data.EventCallback(event); });
 
-		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow *window)
-								   {
+    glfwSetWindowCloseCallback(m_Window, [](GLFWwindow *window) {
 				WindowData& data = *(WindowData*) glfwGetWindowUserPointer(window);
 				WindowCloseEvent event;
 				data.EventCallback(event); });
 
-		glfwSetKeyCallback(m_Window, [](GLFWwindow *window, int key, int scanCode, int action, int mods)
-						   {
+    glfwSetKeyCallback(m_Window, [](GLFWwindow *window, int key, int scanCode, int action, int mods) {
 				WindowData& data = *(WindowData*) glfwGetWindowUserPointer(window);
 
 				switch (action)
@@ -100,14 +97,12 @@ namespace TrEngine
 					}
 				} });
 
-		glfwSetCharCallback(m_Window, [](GLFWwindow *window, unsigned int keyCode)
-							{
+    glfwSetCharCallback(m_Window, [](GLFWwindow *window, unsigned int keyCode) {
 				WindowData& data = *(WindowData*) glfwGetWindowUserPointer(window);
 				KeyTypedEvent event(keyCode);
 				data.EventCallback(event); });
 
-		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow *window, int button, int action, int mods)
-								   {
+    glfwSetMouseButtonCallback(m_Window, [](GLFWwindow *window, int button, int action, int mods) {
 				WindowData& data = *(WindowData*) glfwGetWindowUserPointer(window);
 
 				switch (action)
@@ -126,42 +121,40 @@ namespace TrEngine
 					}
 				} });
 
-		glfwSetScrollCallback(m_Window, [](GLFWwindow *window, double xOffset, double yOffset)
-							  {
+    glfwSetScrollCallback(m_Window, [](GLFWwindow *window, double xOffset, double yOffset) {
 				WindowData& data = *(WindowData*) glfwGetWindowUserPointer(window);
 				MouseScrolledEvent event((float) xOffset, (float) yOffset);
 				data.EventCallback(event); });
 
-		glfwSetCursorPosCallback(m_Window, [](GLFWwindow *window, double xPos, double yPos)
-								 {
+    glfwSetCursorPosCallback(m_Window, [](GLFWwindow *window, double xPos, double yPos) {
 				WindowData& data = *(WindowData*) glfwGetWindowUserPointer(window);
 				MouseMovedEvent event((float) xPos, (float) yPos);
 				data.EventCallback(event); });
-	}
-
-	void GlfwWindow::Shutdown()
-	{
-		glfwDestroyWindow(m_Window);
-	}
-
-	void GlfwWindow::OnUpdate()
-	{
-		glfwPollEvents();
-		m_Context->SwapBuffers();
-	}
-
-	void GlfwWindow::SetVSync(bool enabled)
-	{
-		if (enabled)
-			glfwSwapInterval(1);
-		else
-			glfwSwapInterval(0);
-
-		m_Data.VSync = enabled;
-	}
-
-	bool GlfwWindow::IsVSync() const
-	{
-		return m_Data.VSync;
-	}
 }
+
+void GlfwWindow::Shutdown()
+{
+    glfwDestroyWindow(m_Window);
+}
+
+void GlfwWindow::OnUpdate()
+{
+    glfwPollEvents();
+    m_Context->SwapBuffers();
+}
+
+void GlfwWindow::SetVSync(bool enabled)
+{
+    if (enabled)
+        glfwSwapInterval(1);
+    else
+        glfwSwapInterval(0);
+
+    m_Data.VSync = enabled;
+}
+
+bool GlfwWindow::IsVSync() const
+{
+    return m_Data.VSync;
+}
+} // namespace TrEngine

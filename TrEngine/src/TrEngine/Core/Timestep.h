@@ -2,20 +2,29 @@
 
 namespace TrEngine
 {
-    class TE_API Timestep
+class TE_API Timestep
+{
+  public:
+    Timestep(float time = 0.0f)
+        : m_Time(time)
     {
-    public:
-        Timestep(float time = 0.0f)
-            : m_Time(time)
-        {
-        }
+    }
 
-        operator float() const { return m_Time; }
+    operator float() const
+    {
+        return m_Time;
+    }
 
-        float GetSeconds() const { return m_Time; }
-        float GetMilliseconds() const { return m_Time * 1000.0f; }
+    float GetSeconds() const
+    {
+        return m_Time;
+    }
+    float GetMilliseconds() const
+    {
+        return m_Time * 1000.0f;
+    }
 
-    private:
-        float m_Time;
-    };
-}
+  private:
+    float m_Time;
+};
+} // namespace TrEngine

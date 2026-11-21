@@ -47,8 +47,8 @@ class ExampleLayer : public TrEngine::Layer
 
         m_SquareVA.reset(TrEngine::VertexArray::Create());
 
-        std::array<float, 3 * 4> squareVertices = {-0.5f, -0.5f, -0.1f, 0.5f,  -0.5f, -0.1f,
-                                                   0.5f,  0.5f,  -0.1f, -0.5f, 0.5f,  -0.1f};
+        std::array<float, 3 * 4> squareVertices = {-0.5f, -0.5f, -0.1f, 0.5f, -0.5f, -0.1f,
+                                                   0.5f, 0.5f, -0.1f, -0.5f, 0.5f, -0.1f};
 
         std::shared_ptr<TrEngine::VertexBuffer> SquareVB(
             TrEngine::VertexBuffer::Create(squareVertices.data(), sizeof(squareVertices)),
@@ -176,7 +176,7 @@ class ExampleLayer : public TrEngine::Layer
         // glm::vec4 blueColor(0.2f, 0.3f, 0.8f, 1.0f);
 
         std::dynamic_pointer_cast<TrEngine::OpenGLShader>(m_FlatShader)->Bind();
-         std::dynamic_pointer_cast<TrEngine::OpenGLShader>(m_FlatShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+        std::dynamic_pointer_cast<TrEngine::OpenGLShader>(m_FlatShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
         //     TrEngine::Materialref material = new TrEngine::Material(m_FlatShader);
         //     TrEngine::MaterialInstanceRef materialInstance = new TrEngine::MaterialInstance(material);
@@ -197,7 +197,7 @@ class ExampleLayer : public TrEngine::Layer
                 // else
                 //   m_FlatShader->UploadUniformFloat4("u_Color", blueColor);
 
-                TrEngine::Renderer::Submit(m_FlatShader , m_SquareVA, transform);
+                TrEngine::Renderer::Submit(m_FlatShader, m_SquareVA, transform);
             }
         }
 
@@ -206,7 +206,7 @@ class ExampleLayer : public TrEngine::Layer
         TrEngine::Renderer::EndScene();
     }
 
-    virtual void OnImGuiRender()override
+    virtual void OnImGuiRender() override
     {
         ImGui::Begin("Settings");
         ImGui::ColorEdit3("Square color", glm::value_ptr(m_SquareColor));

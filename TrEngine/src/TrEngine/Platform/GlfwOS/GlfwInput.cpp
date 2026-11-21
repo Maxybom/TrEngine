@@ -8,58 +8,58 @@
 
 namespace TrEngine
 {
-	class GlfwInput : public Input
-	{
-	public:
-		GlfwInput() = default;
-		~GlfwInput() = default;
+class GlfwInput : public Input
+{
+  public:
+    GlfwInput() = default;
+    ~GlfwInput() = default;
 
-	protected:
-		virtual bool IsKeyPressedImpl(int keycode) override
-		{
-			if (ImGui::GetIO().WantCaptureKeyboard)
-				return false;
+  protected:
+    virtual bool IsKeyPressedImpl(int keycode) override
+    {
+        if (ImGui::GetIO().WantCaptureKeyboard)
+            return false;
 
-			auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-			auto state = glfwGetKey(window, keycode);
-			return state == GLFW_PRESS || state == GLFW_REPEAT;
-		}
+        auto window = static_cast<GLFWwindow *>(Application::Get().GetWindow().GetNativeWindow());
+        auto state = glfwGetKey(window, keycode);
+        return state == GLFW_PRESS || state == GLFW_REPEAT;
+    }
 
-		virtual bool IsMouseButtonPressedImpl(int button) override
-		{
-			if (ImGui::GetIO().WantCaptureMouse)
-				return false;
+    virtual bool IsMouseButtonPressedImpl(int button) override
+    {
+        if (ImGui::GetIO().WantCaptureMouse)
+            return false;
 
-			auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-			auto state = glfwGetMouseButton(window, button);
-			return state == GLFW_PRESS;
-		}
+        auto window = static_cast<GLFWwindow *>(Application::Get().GetWindow().GetNativeWindow());
+        auto state = glfwGetMouseButton(window, button);
+        return state == GLFW_PRESS;
+    }
 
-		virtual std::pair<float, float> GetMousePositionImpl() override
-		{
-			if (ImGui::GetIO().WantCaptureMouse)
-				return {0.0f, 0.0f};
+    virtual std::pair<float, float> GetMousePositionImpl() override
+    {
+        if (ImGui::GetIO().WantCaptureMouse)
+            return {0.0f, 0.0f};
 
-			auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-			double xPos, yPos;
-			glfwGetCursorPos(window, &xPos, &yPos);
-			return {static_cast<float>(xPos), static_cast<float>(yPos)};
-		}
+        auto window = static_cast<GLFWwindow *>(Application::Get().GetWindow().GetNativeWindow());
+        double xPos, yPos;
+        glfwGetCursorPos(window, &xPos, &yPos);
+        return {static_cast<float>(xPos), static_cast<float>(yPos)};
+    }
 
-		virtual float GetMouseXImpl() override
-		{
-			return GetMousePositionImpl().first;
-		}
+    virtual float GetMouseXImpl() override
+    {
+        return GetMousePositionImpl().first;
+    }
 
-		virtual float GetMouseYImpl() override
-		{
-			return GetMousePositionImpl().second;
-		}
+    virtual float GetMouseYImpl() override
+    {
+        return GetMousePositionImpl().second;
+    }
 
-	private:
-		static Input* s_Instance;
-	};
+  private:
+    static Input *s_Instance;
+};
 
-	// static var initialization
-	Input* Input::s_Instance = new GlfwInput();
-}
+// static var initialization
+Input *Input::s_Instance = new GlfwInput();
+} // namespace TrEngine
