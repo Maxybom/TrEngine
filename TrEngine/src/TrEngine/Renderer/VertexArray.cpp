@@ -5,15 +5,17 @@
 
 namespace TrEngine
 {
-	VertexArray* VertexArray::Create()
-	{
-		switch (Renderer::GetAPI())
-		{
-		case RendererAPI::API::None:		TE_CORE_ASSERT(false, "RendererAPI::None is not supported");
-		case RendererAPI::API::OpenGL:	return new OpenGLVertexArray();
-		}
+VertexArray *VertexArray::Create()
+{
+    switch (Renderer::GetAPI())
+    {
+    case RendererAPI::API::None:
+        TE_CORE_ASSERT(false, "RendererAPI::None is not supported");
+    case RendererAPI::API::OpenGL:
+        return new OpenGLVertexArray();
+    }
 
-		TE_CORE_ASSERT(false, "Unknown rendererAPI!");
-		return nullptr;
-	}
+    TE_CORE_ASSERT(false, "Unknown rendererAPI!");
+    return nullptr;
 }
+} // namespace TrEngine

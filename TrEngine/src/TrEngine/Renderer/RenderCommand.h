@@ -4,35 +4,35 @@
 
 namespace TrEngine
 {
-	class TE_API RenderCommand
-	{
-	public:
-		inline static void Init()
-		{
-			s_RendererAPI->Init();
-		}
+class TE_API RenderCommand
+{
+  public:
+    inline static void Init()
+    {
+        s_RendererAPI->Init();
+    }
 
-		static inline void SetClearColor(const glm::vec4 &color)
-		{
-			s_RendererAPI->SetClearColor(color);
-		}
+    static inline void SetClearColor(const glm::vec4 &color)
+    {
+        s_RendererAPI->SetClearColor(color);
+    }
 
-		static inline void Clear()
-		{
-			s_RendererAPI->Clear();
-		}
+    static inline void Clear()
+    {
+        s_RendererAPI->Clear();
+    }
 
-		static inline void DrawIndexed(const std::shared_ptr<VertexArray> &vertexArray)
-		{
-			s_RendererAPI->DrawIndexed(vertexArray);
-		}
+    static inline void DrawIndexed(const std::shared_ptr<VertexArray> &vertexArray)
+    {
+        s_RendererAPI->DrawIndexed(vertexArray);
+    }
 
-		inline static void SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height)
-		{
-			s_RendererAPI->SetViewport(x, y, width, height);
-		}
+    inline static void SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height)
+    {
+        s_RendererAPI->SetViewport(x, y, width, height);
+    }
 
-	private:
-		static RendererAPI *s_RendererAPI;
-	};
-}
+  private:
+    static RendererAPI *s_RendererAPI;
+};
+} // namespace TrEngine

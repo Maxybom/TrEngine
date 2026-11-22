@@ -9,35 +9,41 @@
 
 namespace TrEngine
 {
-	class TE_API Application
-	{
-	public:
-		Application();
-		virtual ~Application();
+class TE_API Application
+{
+  public:
+    Application();
+    virtual ~Application();
 
-		void Run();
+    void Run();
 
-		void OnEvent(Event &e);
+    void OnEvent(Event &e);
 
-		void PushLayer(Layer *layer);
-		void PushOverlay(Layer *layer);
+    void PushLayer(Layer *layer);
+    void PushOverlay(Layer *layer);
 
-		inline static Application &Get() { return *s_Instance; }
+    inline static Application &Get()
+    {
+        return *s_Instance;
+    }
 
-		inline Window &GetWindow() { return *m_Window; }
+    inline Window &GetWindow()
+    {
+        return *m_Window;
+    }
 
-	private:
-		bool OnWindowClose(WindowCloseEvent &e);
+  private:
+    bool OnWindowClose(WindowCloseEvent &e);
 
-		std::unique_ptr<Window> m_Window;
-		bool m_Running = true;
-		LayerStack m_LayerStack;
-		ImGuiLayer *m_ImGuiLayer;
-		Timestep m_Timestep;
-		Timestep m_LastFrameTime = 0.0f;
+    std::unique_ptr<Window> m_Window;
+    bool m_Running = true;
+    LayerStack m_LayerStack;
+    ImGuiLayer *m_ImGuiLayer;
+    Timestep m_Timestep;
+    Timestep m_LastFrameTime = 0.0f;
 
-		static Application *s_Instance;
-	};
-	// to be defined in CLIENT
-	Application *CreateApplication();
-}
+    static Application *s_Instance;
+};
+// to be defined in CLIENT
+Application *CreateApplication();
+} // namespace TrEngine

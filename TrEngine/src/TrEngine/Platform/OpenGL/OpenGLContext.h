@@ -5,18 +5,18 @@ class GLFWwindow;
 
 namespace TrEngine
 {
-	class OpenGLContext : public GraphicsContext
-	{
-	public:
-		OpenGLContext() = default;
-		~OpenGLContext();
+class OpenGLContext : public GraphicsContext
+{
+  public:
+    OpenGLContext() = default;
+    ~OpenGLContext();
 
-		explicit OpenGLContext(GLFWwindow *windowHandle);
+    explicit OpenGLContext(GLFWwindow *windowHandle);
 
-		void Init() override;
-		void SwapBuffers() override;
+    void Init() override;
+    void SwapBuffers() override;
 
-	private:
-		GLFWwindow *m_WindowHandle;
-	};
-}
+  private:
+    GLFWwindow *m_WindowHandle;
+};
+} // namespace TrEngine

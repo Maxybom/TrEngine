@@ -13,55 +13,55 @@ namespace TrEngine
 {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
-	Application *Application::s_Instance = nullptr;
+Application *Application::s_Instance = nullptr;
 
-	Application::Application()
-	{
-		TE_CORE_ASSERT(!s_Instance, "Application already exists!");
-		s_Instance = this;
+Application::Application()
+{
+    TE_CORE_ASSERT(!s_Instance, "Application already exists!");
+    s_Instance = this;
 
-		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
-		m_Window->SetVSync(false);
+    m_Window = std::unique_ptr<Window>(Window::Create());
+    m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+    m_Window->SetVSync(false);
 
-		Renderer::Init();
+    Renderer::Init();
 
-		m_ImGuiLayer = new ImGuiLayer();
-		PushOverlay(m_ImGuiLayer);
-	}
+    m_ImGuiLayer = new ImGuiLayer();
+    PushOverlay(m_ImGuiLayer);
+}
 
-	Application::~Application() = default;
+Application::~Application() = default;
 
-	void Application::PushLayer(Layer *layer)
-	{
-		m_LayerStack.PushLayer(layer);
-		layer->OnAttach();
-	}
+void Application::PushLayer(Layer *layer)
+{
+    m_LayerStack.PushLayer(layer);
+    layer->OnAttach();
+}
 
-	void Application::PushOverlay(Layer *layer)
-	{
-		m_LayerStack.PushOverlay(layer);
-		layer->OnAttach();
-	}
+void Application::PushOverlay(Layer *layer)
+{
+    m_LayerStack.PushOverlay(layer);
+    layer->OnAttach();
+}
 
-	void Application::OnEvent(Event &e)
-	{
-		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+void Application::OnEvent(Event &e)
+{
+    EventDispatcher dispatcher(e);
+    dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
-		if (ImGui::GetIO().WantCaptureMouse || ImGui::GetIO().WantCaptureKeyboard)
-		{
-			e.SetHandled(true);
-			return;
-		}
+    if (ImGui::GetIO().WantCaptureMouse || ImGui::GetIO().WantCaptureKeyboard)
+    {
+        e.SetHandled(true);
+        return;
+    }
 
-		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
-		{
-			(*--it)->OnEvent(e);
-			if (e.IsHandled())
-				break;
-		}
-	}
+    for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
+    {
+        (*--it)->OnEvent(e);
+        if (e.IsHandled())
+            break;
+    }
+}
 
 void Application::Run()
 {
@@ -100,9 +100,9 @@ void Application::Run()
     }
 }
 
-    bool Application::OnWindowClose(WindowCloseEvent &e)
-    {
-        m_Running = false;
-        return true;
-    }
+bool Application::OnWindowClose(WindowCloseEvent &e)
+{
+    m_Running = false;
+    return true;
 }
+} // namespace TrEngine

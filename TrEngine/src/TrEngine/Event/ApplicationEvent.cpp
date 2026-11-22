@@ -8,4 +8,3 @@ TrEngine::AppTickEvent::~AppTickEvent() = default;
 TrEngine::AppUpdateEvent::~AppUpdateEvent() = default;
 
 TrEngine::AppRenderEvent::~AppRenderEvent() = default;
-
