@@ -50,7 +50,7 @@ class ExampleLayer : public TrEngine::Layer
         std::array<float, 3 * 4> squareVertices = {-0.5f, -0.5f, -0.1f, 0.5f, -0.5f, -0.1f,
                                                    0.5f, 0.5f, -0.1f, -0.5f, 0.5f, -0.1f};
 
-        std::shared_ptr<TrEngine::VertexBuffer> SquareVB(
+        TrEngine::Ref<TrEngine::VertexBuffer> SquareVB(
             TrEngine::VertexBuffer::Create(squareVertices.data(), sizeof(squareVertices)),
             [](TrEngine::VertexBuffer *ptr) { delete ptr; });
 
@@ -58,7 +58,7 @@ class ExampleLayer : public TrEngine::Layer
         m_SquareVA->AddVertexBuffer(SquareVB);
 
         std::array<uint32_t, 6> squareIndices = {0, 1, 2, 2, 3, 0};
-        std::shared_ptr<TrEngine::IndexBuffer> squareIB(
+        TrEngine::Ref<TrEngine::IndexBuffer> squareIB(
             TrEngine::IndexBuffer::Create(squareIndices.data(), sizeof(squareIndices) / sizeof(uint32_t)),
             [](TrEngine::IndexBuffer *ptr) { delete ptr; });
 
@@ -218,7 +218,7 @@ class ExampleLayer : public TrEngine::Layer
     }
 
   private:
-    std::shared_ptr<TrEngine::Shader> m_FlatShader;
+    TrEngine::Ref<TrEngine::Shader> m_FlatShader;
     /*
     std::shared_ptr<TrEngine::VertexArray> m_VertexArray;
     std::shared_ptr<TrEngine::VertexBuffer> m_VertexBuffer;
@@ -226,7 +226,7 @@ class ExampleLayer : public TrEngine::Layer
     */
 
     /* std::shared_ptr<TrEngine::Shader> m_Shader2; */
-    std::shared_ptr<TrEngine::VertexArray> m_SquareVA;
+    TrEngine::Ref<TrEngine::VertexArray> m_SquareVA;
 
     TrEngine::OrthographicCamera m_Camera;
     glm::vec3 m_CameraPosition;
